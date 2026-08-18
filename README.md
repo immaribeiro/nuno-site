@@ -28,6 +28,14 @@ npm run preview
 
 No backend, API, authentication, or runtime service is required.
 
+## Chat with Hermes
+
+The site's **Hermes** page is a direct line to Imma's personal assistant (the same agent that maintains this site). Requests POST to `/api/chat` on the site's nginx, which proxies to the host's `nuno-chat-bridge` (launchd, port 8643) — a thin authenticated, rate-limited relay to the Hermes API server (OpenAI-compatible, inside the Hermes gateway on 127.0.0.1:8642). Conversations use a named session (`nuno-site`) so they appear in the Hermes dashboard like any other chat.
+
+- The Hermes API key never leaves the hub; the site only embeds a weak client-side token (`SITE_TOKEN` in `src/config.js`).
+- Bridge code + docs: `~/GitHub/homelab/nuno-chat-bridge/` (secrets in `~/.hermes/env/nuno-chat-bridge.env`, chmod 600).
+- nginx.conf maps `/api/` to an `upstream hermes_bridge` with dual-IP failover (Lima gateway `192.168.5.2` / LAN `192.168.8.161`).
+
 ## Events pipeline
 
 `fetch_events.py` collects public cultural events in Porto and Braga from venue agenda pages, Portuguese ticketing pages, and Eventbrite's public pages, then writes the static `public/events.json` consumed by the site. Eventbrite is always-on and keyless: its public search API was retired in 2020, so the Porto/Braga browse pages are scraped directly without API authentication.
