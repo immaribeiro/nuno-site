@@ -297,7 +297,7 @@ def detail_price(url, cache):
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--days",type=int,default=14); ap.add_argument("--city",choices=("porto","braga","all"),default="all"); ap.add_argument("--force",action="store_true"); ap.add_argument("--source-url",action="append",help=argparse.SUPPRESS); args=ap.parse_args()
-    now=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0); cutoff=now+timedelta(days=args.days); topics=json.loads((ROOT/"topics.json").read_text())
+    now=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0); cutoff=now+timedelta(days=args.days); topics=json.loads((ROOT/"public/topics.json").read_text())
     sources=SOURCES
     override=args.source_url or [x for x in os.getenv("FETCH_EVENTS_SOURCE_URLS","").split(",") if x]
     if override: sources=[("Fixture/source", args.city if args.city!="all" else "porto", x) for x in override]

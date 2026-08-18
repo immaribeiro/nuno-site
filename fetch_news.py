@@ -99,7 +99,7 @@ def main():
     now = datetime.now(TZ)
     cutoff = now - timedelta(days=4)
     config = json.loads((ROOT / "news_sources.json").read_text())
-    topics = json.loads((ROOT / "topics.json").read_text())
+    topics = json.loads((ROOT / "public/topics.json").read_text())
     news_focus = [str(t) for t in topics.get("news_focus", [])]
     max_per_source = int(config.get("max_per_source", 8))
     max_total = int(config.get("max_total", 60))

@@ -1,5 +1,15 @@
 [
   {
+    "id": "f22a0b10adff742e",
+    "title": "Imigração: o crime compensou?",
+    "source": "Observador",
+    "url": "https://observador.pt/opiniao/imigracao-mais-de-51-900-regularizacoes-sob-suspeita-o-crime-compensou-em-portugal/",
+    "published": "2026-08-19T00:12:07+01:00",
+    "category": "portugal",
+    "topics": [],
+    "summary": "O Estado está disposto a assumir os custos administrativos, financeiros e políticos necessários para anular integralmente os efeitos da fraude?"
+  },
+  {
     "id": "5ea5de026bc39fe9",
     "title": "Estamos a afundar-nos antes de entrar na água",
     "source": "Observador",
@@ -60,14 +70,14 @@
     "summary": "Uma história de armas escondidas, de acusações de conspiração, de tentativas de mudança de regime, de tribunais militares e de uma família de Guimarães."
   },
   {
-    "id": "a79503975a2ea5f4",
-    "title": "Condomínios: a desproteção de um põe todos em risco",
-    "source": "Observador",
-    "url": "https://observador.pt/opiniao/condominios-a-desprotecao-de-um-poe-todos-em-risco/",
-    "published": "2026-08-19T00:02:03+01:00",
-    "category": "portugal",
+    "id": "8e66445015e21ba3",
+    "title": "Minnesota official sues Texas governor to force ICE agent’s extradition",
+    "source": "Al Jazeera",
+    "url": "https://www.aljazeera.com/news/2026/8/18/minnesota-official-sues-texas-governor-to-force-ice-agents-extradition?traffic_source=rss",
+    "published": "2026-08-18T23:55:50+01:00",
+    "category": "world",
     "topics": [],
-    "summary": "É fundamental existir uma alteração da cultura relativamente aos riscos e à sua cobertura, sobretudo relativamente àqueles que estão a intensificar-se com as alterações climáticas."
+    "summary": "State Attorney General Keith Ellison has called for the transfer of ICE agent accused of lying about nonfatal shooting."
   },
   {
     "id": "88f042449b770db5",
@@ -128,6 +138,16 @@
     "category": "local",
     "topics": [],
     "summary": "O poste Neemias Queta prometeu hoje “focar” a atenção na seleção portuguesa de basquetebol, mais precisamente nos dois… O conteúdo Neemias Queta promete “focar” atenção nos jogos da seleção e iniciar "
+  },
+  {
+    "id": "906b78ddfdc8ce89",
+    "title": "Meta hooked children on Facebook and Instagram, court hears",
+    "source": "BBC World",
+    "url": "https://www.bbc.co.uk/news/articles/cly5r7vr7q1o?at_medium=RSS&at_campaign=rss",
+    "published": "2026-08-18T23:11:07+01:00",
+    "category": "world",
+    "topics": [],
+    "summary": "Meta argued social media addiction does not exist, as a trial stemming from a major lawsuit brought by US states got under way."
   },
   {
     "id": "30f0e6f17a701053",
@@ -240,16 +260,6 @@
     "summary": "The attack was the latest in a series of Israeli military interventions in Syria over the past two years."
   },
   {
-    "id": "7a165e7881f8c742",
-    "title": "Trump says no talks planned with Iran amid anger over Iran-Oman Hormuz deal",
-    "source": "Al Jazeera",
-    "url": "https://www.aljazeera.com/news/2026/8/18/no-talks-with-iran-says-trump-as-us-president-stews-over-hormuz-deal?traffic_source=rss",
-    "published": "2026-08-18T22:03:59+01:00",
-    "category": "world",
-    "topics": [],
-    "summary": "US president hits out as states bordering the Strait of Hormuz continue talks on managing the strategic waterway."
-  },
-  {
     "id": "b45f7198462f8af9",
     "title": "A Mother’s Quest to Rescue Her Son From Russian-Occupied Ukraine",
     "source": "NYT World",
@@ -328,16 +338,6 @@
     "category": "portugal",
     "topics": [],
     "summary": "Não vale a pena ter ilusões nem mentir aos portugueses: a prazo, o sistema de pensões está falido. Jorge Bravo explicou isso bem. Uma coisa é o saldo corrente, superavitário, e outra são os cálculos a"
-  },
-  {
-    "id": "2c8b2d141728eb9a",
-    "title": "O mundo inteiro na bola Nívea",
-    "source": "Público",
-    "url": "https://www.publico.pt/2026/08/18/p3/cronica/mundo-inteiro-bola-nivea-2185423",
-    "published": "2026-08-18T21:28:41+01:00",
-    "category": "portugal",
-    "topics": [],
-    "summary": "Na Costa da Caparica éramos felizes, longe da escola e dos deveres, das discussões em casa e da falta de dinheiro para comprarmos todos os brinquedos desejados. Crónica de Cláudia Lucas Chéu"
   },
   {
     "id": "899ae50eece67d22",
