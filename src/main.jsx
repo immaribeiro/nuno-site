@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
-import { SITE_PIN } from './config'
+import { SITE_PIN, SITE_TOKEN } from './config'
 
 const UNLOCKED_STORAGE_KEY = 'nuno-archive-unlocked'
 const TOPICS_STORAGE_KEY = 'nuno-event-topics'
 const NEWS_TOPICS_STORAGE_KEY = 'nuno-news-topics'
 const PINNED_STORAGE_KEY = 'nuno_events_pinned'
+const CHAT_STORAGE_KEY = 'nuno-chat-history'
 
 function PinGate({ onUnlock }) {
   const [pin, setPin] = useState('')
@@ -141,12 +142,45 @@ function UsPage() {
   </div></main>
 }
 
+const CHAT_GREETING = 'Olá, Nuno! 👋 Sou a Hermes, a assistente da Imma — e agora também tua. Pede o que quiseres: novos tópicos nas notícias, ideias de programas, mudanças na página Us, ou outra coisa qualquer para este site.'
+function ChatPage() {
+  const [messages, setMessages] = useState(() => { const saved = readStorage(CHAT_STORAGE_KEY).filter((m) => m && typeof m === 'object' && (m.role === 'user' || m.role === 'assistant') && typeof m.text === 'string'); return saved.length ? saved : [{ role: 'assistant', text: CHAT_GREETING }] })
+  const [input, setInput] = useState(''); const [busy, setBusy] = useState(false); const [error, setError] = useState('')
+  const endRef = useRef(null); const headingRef = useRef(null)
+  useEffect(() => { localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages.slice(-50))) }, [messages])
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }) }, [messages, busy])
+  useEffect(() => { headingRef.current?.focus() }, [])
+  const send = async (event) => {
+    event.preventDefault()
+    const text = input.trim()
+    if (!text || busy) return
+    setMessages((current) => [...current, { role: 'user', text }]); setInput(''); setBusy(true); setError('')
+    try {
+      const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${SITE_TOKEN}` }, body: JSON.stringify({ message: text }) })
+      const data = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(data.error || 'request failed')
+      setMessages((current) => [...current, { role: 'assistant', text: data.reply || '(sem resposta)' }])
+    } catch (err) {
+      setError(typeof err?.message === 'string' && err.message.length < 140 ? err.message : 'Não consegui falar com a Hermes — tenta outra vez.')
+    } finally { setBusy(false) }
+  }
+  const clearChat = () => { setMessages([{ role: 'assistant', text: CHAT_GREETING }]) }
+  return <main id="chat" className="events-page chat-page"><div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+    <div className="mb-12 max-w-[42rem]"><p className="label mb-5 text-amber">06 / THE ASSISTANT</p><h1 ref={headingRef} tabIndex="-1" className="font-display text-[clamp(3rem,8vw,6rem)] font-semibold leading-[.94] tracking-[-.025em]">Hermes</h1><p className="mt-6 font-body text-base leading-[1.55] text-cream-muted">Uma linha direta para a assistente que mantém este site. Pede novos tópicos, programas, ou mudanças — ela pode demorar alguns segundos a responder.</p></div>
+    <section className="chat-shell" aria-label="Chat com a Hermes"><div className="chat-window" role="log" aria-live="polite">{messages.map((msg, index) => <div key={index} className={`chat-msg ${msg.role === 'user' ? 'is-user' : 'is-hermes'}`}><div className="chat-bubble"><p>{msg.text}</p><span className="chat-meta">{msg.role === 'user' ? 'Nuno' : 'Hermes'}</span></div></div>)}{busy && <div className="chat-msg is-hermes"><div className="chat-bubble chat-typing" role="status" aria-label="A Hermes está a pensar"><span /><span /><span /></div></div>}<div ref={endRef} /></div>
+      {error && <p className="chat-error" role="status">{error}</p>}
+      <form className="chat-form" onSubmit={send}><label className="sr-only" htmlFor="chat-input">Mensagem para a Hermes</label><input id="chat-input" className="chat-input" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Pede o que quiseres…" maxLength={2000} autoComplete="off" disabled={busy} /><button type="submit" className="chat-send" disabled={busy || !input.trim()}>{busy ? '…' : 'Enviar'}</button></form>
+      <div className="chat-footer"><button type="button" className="us-action" onClick={clearChat}>Recomeçar conversa</button><span className="label text-cream-dim">Os pedidos entram diretamente na assistente.</span></div>
+    </section>
+  </div></main>
+}
+
 function App() {
   const [photos, setPhotos] = useState([]); const [quotes, setQuotes] = useState([]); const [active, setActive] = useState(null); const [view, setView] = useState('gallery'); const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(UNLOCKED_STORAGE_KEY) === SITE_PIN)
   useEffect(() => { Promise.all([fetch('./manifest.json').then(r => r.json()), fetch('./quotes.json').then(r => r.json())]).then(([p, q]) => { setPhotos(p); setQuotes(q) }).catch(console.error) }, [])
   useEffect(() => { if (active !== null) { const pre = new Image(); pre.src = photos[(active + 1) % photos.length]?.src } }, [active, photos])
   const switchView = (nextView) => { setView(nextView); window.scrollTo(0, 0) }
   if (!unlocked) return <PinGate onUnlock={() => setUnlocked(true)} />
-  return <div className="min-h-screen bg-ink text-cream"><header className="site-header"><button className="wordmark" onClick={() => switchView('gallery')}>NUNO <span className="text-amber">/</span> IMMA</button><nav aria-label="Primary navigation"><button className={`nav-link ${view === 'gallery' ? 'is-active' : ''}`} onClick={() => switchView('gallery')} aria-pressed={view === 'gallery'}>The archive</button><button className={`nav-link ${view === 'events' ? 'is-active' : ''}`} onClick={() => switchView('events')} aria-pressed={view === 'events'}>Events</button><button className={`nav-link ${view === 'news' ? 'is-active' : ''}`} onClick={() => switchView('news')} aria-pressed={view === 'news'}>News</button><button className={`nav-link ${view === 'us' ? 'is-active' : ''}`} onClick={() => switchView('us')} aria-pressed={view === 'us'}>Us</button></nav></header>{view === 'gallery' ? <Gallery photos={photos} quotes={quotes} onPhoto={setActive} /> : view === 'events' ? <EventsPage /> : view === 'news' ? <NewsPage /> : <UsPage />}<footer className="border-t border-cream/15 px-5 py-12 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1440px] items-end justify-between"><p className="label text-cream">Nuno + Imma</p><p className="label text-right text-cream-dim">A small archive of us<br />2024 — now</p></div></footer><div className="grain" />{active !== null && <Lightbox photos={photos} index={active} onClose={() => setActive(null)} onChange={setActive} />}</div>
+  return <div className="min-h-screen bg-ink text-cream"><header className="site-header"><button className="wordmark" onClick={() => switchView('gallery')}>NUNO <span className="text-amber">/</span> IMMA</button><nav aria-label="Primary navigation"><button className={`nav-link ${view === 'gallery' ? 'is-active' : ''}`} onClick={() => switchView('gallery')} aria-pressed={view === 'gallery'}>The archive</button><button className={`nav-link ${view === 'events' ? 'is-active' : ''}`} onClick={() => switchView('events')} aria-pressed={view === 'events'}>Events</button><button className={`nav-link ${view === 'news' ? 'is-active' : ''}`} onClick={() => switchView('news')} aria-pressed={view === 'news'}>News</button><button className={`nav-link ${view === 'us' ? 'is-active' : ''}`} onClick={() => switchView('us')} aria-pressed={view === 'us'}>Us</button><button className={`nav-link ${view === 'chat' ? 'is-active' : ''}`} onClick={() => switchView('chat')} aria-pressed={view === 'chat'}>Hermes</button></nav></header>{view === 'gallery' ? <Gallery photos={photos} quotes={quotes} onPhoto={setActive} /> : view === 'events' ? <EventsPage /> : view === 'news' ? <NewsPage /> : view === 'us' ? <UsPage /> : <ChatPage />}<footer className="border-t border-cream/15 px-5 py-12 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1440px] items-end justify-between"><p className="label text-cream">Nuno + Imma</p><p className="label text-right text-cream-dim">A small archive of us<br />2024 — now</p></div></footer><div className="grain" />{active !== null && <Lightbox photos={photos} index={active} onClose={() => setActive(null)} onChange={setActive} />}</div>
 }
 createRoot(document.getElementById('root')).render(<App />)
