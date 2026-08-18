@@ -1,6 +1,47 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
+import { SITE_PIN } from './config'
+
+const UNLOCKED_STORAGE_KEY = 'nuno-archive-unlocked'
+
+function PinGate({ onUnlock }) {
+  const [pin, setPin] = useState('')
+  const [error, setError] = useState(false)
+  const inputRef = useRef(null)
+
+  useEffect(() => { inputRef.current?.focus() }, [])
+
+  const submit = (event) => {
+    event.preventDefault()
+    if (pin === SITE_PIN) {
+      sessionStorage.setItem(UNLOCKED_STORAGE_KEY, SITE_PIN)
+      onUnlock()
+      return
+    }
+    setError(true)
+    setPin('')
+    inputRef.current?.focus()
+  }
+
+  return <main className="pin-gate" aria-labelledby="pin-title">
+    <div className={`pin-gate-inner ${error ? 'pin-gate-shake' : ''}`}>
+      <p className="label text-amber">NUNO <span className="text-cream-dim">/</span> IMMA</p>
+      <span className="pin-rule" aria-hidden="true" />
+      <p className="label text-cream-dim">The archive</p>
+      <h1 id="pin-title" className="pin-title">A private<br />collection.</h1>
+      <p className="pin-note">For Nuno</p>
+      <form className="pin-form" onSubmit={submit} noValidate>
+        <label className="sr-only" htmlFor="archive-pin">Enter the archive PIN</label>
+        <input ref={inputRef} id="archive-pin" className="pin-input" type="password" inputMode="numeric" pattern="[0-9]*" maxLength={4} autoComplete="off" value={pin} onChange={(event) => { setError(false); setPin(event.target.value.replace(/\\D/g, '').slice(0, 4)) }} aria-label="Enter the archive PIN" aria-describedby="pin-hint pin-status" />
+        <button className="pin-submit" type="submit">Unlock <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="pin-hint" className="pin-hint">Enter the four-digit code to continue.</p>
+      <p id="pin-status" className="pin-status" role="status" aria-live="polite">{error ? 'That code was not the one.' : '\u00a0'}</p>
+    </div>
+    <div className="grain" />
+  </main>
+}
 
 function Reveal({ children, className = '', delay = 0 }) {
   const ref = useRef(null)
@@ -38,8 +79,10 @@ function Lightbox({ photos, index, onClose, onChange }) {
 
 function App() {
   const [photos, setPhotos] = useState([]); const [quotes, setQuotes] = useState([]); const [active, setActive] = useState(null)
+  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(UNLOCKED_STORAGE_KEY) === SITE_PIN)
   useEffect(() => { Promise.all([fetch('./manifest.json').then(r => r.json()), fetch('./quotes.json').then(r => r.json())]).then(([p, q]) => { setPhotos(p); setQuotes(q) }).catch(console.error) }, [])
   useEffect(() => { if (active !== null) { const pre = new Image(); pre.src = photos[(active + 1) % photos.length]?.src } }, [active, photos])
+  if (!unlocked) return <PinGate onUnlock={() => setUnlocked(true)} />
   return <div className="min-h-screen bg-ink text-cream">
     <header className="relative z-20 flex h-[60px] items-center justify-between px-5 sm:h-[72px] sm:px-8 lg:px-12"><a href="#top" className="font-body text-[11px] font-semibold uppercase tracking-[.16em]">NUNO <span className="text-amber">/</span> IMMA</a><span className="hidden font-body text-[11px] font-semibold uppercase tracking-[.16em] text-cream-dim sm:block">The archive <span className="ml-3 text-amber">{photos.length || '—'} frames</span></span></header>
     <main id="top">
