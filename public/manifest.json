@@ -48,5 +48,20 @@
     "src": "/photos/10.webp",
     "caption": "",
     "orientation": "landscape"
+  },
+  {
+    "src": "/photos/11.webp",
+    "caption": "",
+    "orientation": "landscape"
+  },
+  {
+    "src": "/photos/12.webp",
+    "caption": "",
+    "orientation": "portrait"
+  },
+  {
+    "src": "/photos/13.webp",
+    "caption": "",
+    "orientation": "landscape"
   }
 ]
