@@ -1,5 +1,32 @@
 [
   {
+    "id": "4f494305d649e302",
+    "title": "Porto Nightlife Pub Crawl | 4 Bars, 8 Drinks, Games & VIP Club Entry",
+    "date": "2026-08-18T00:00:00+01:00",
+    "venue": "Fonte dos Leões",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Join Porto's biggest pub crawl. Play Beer Pong, Flip Cup & fun challenges. Get 8 drinks, zero lines at 4 top bars and hit the best club",
+    "url": "https://www.eventbrite.co.uk/e/porto-nightlife-pub-crawl-4-bars-8-drinks-games-vip-club-entry-tickets-1965407393421"
+  },
+  {
+    "id": "ff0d28f7e086a6e0",
+    "title": "Concertos e eventos CastleRock - Pub & Hotel, Porto",
+    "date": "2026-08-19T00:00:00+01:00",
+    "venue": "R. do Conde de Vizela 114",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "concerto",
+      "concert",
+      "música",
+      "comédia"
+    ],
+    "description": "À terça, quarta, sexta e sábado há música, sessões de comédia, microfone aberto a músicos ou noites temáticas. Os 5€ são consumíveis.",
+    "url": "https://www.eventbrite.pt/e/bilhetes-concertos-e-eventos-castlerock-pub-hotel-porto-1992116739795"
+  },
+  {
     "id": "276945cd57480cda",
     "title": "Pedro Ferreira",
     "date": "2026-08-19T18:00:00+01:00",
@@ -28,6 +55,53 @@
     "url": "https://casadamusica.com/event/touriga/?selected_session=54266"
   },
   {
+    "id": "5adc5c5b801483f5",
+    "title": "Cura de Som (Sound healing & chakra alignment)",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "R. de Gondarém 779 loja u",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Uma terapia de som ✨ (individual session/sessão individual)",
+    "url": "https://www.eventbrite.com/e/cura-de-som-sound-healing-chakra-alignment-tickets-1984557863994"
+  },
+  {
+    "id": "3c127bcd66271f91",
+    "title": "Porto Sunset Pubcrawl",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "Fonte dos Leões",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Experience Porto’s soul at a slower pace. Enjoy 3 local spots with drinks and food, ending at an iconic viewpoint for the sunset. Authentic",
+    "url": "https://www.eventbrite.co.uk/e/porto-sunset-pubcrawl-tickets-1989094156166"
+  },
+  {
+    "id": "c3aceb579ab79d61",
+    "title": "Porto: Live Fado Concert in a beautiful 19th century Palace",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "R. Formosa 121",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "concert",
+      "fado"
+    ],
+    "description": "Enjoy an hour of FADO in a very central location, in a magnificent building in Porto Downtow (near Bolhao Metro Station)!",
+    "url": "https://www.eventbrite.pt/e/bilhetes-porto-live-fado-concert-in-a-beautiful-19th-century-palace-1986706985073"
+  },
+  {
+    "id": "8f7fef987d8656c0",
+    "title": "Reunião Networking empresarial",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "AEP Foundation",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Networking BNI Portucale! Empresários reúnem-se semanalmente para trocar negócios. Já geramos +30M€! Sextas, 7h na Fundação AEP",
+    "url": "https://www.eventbrite.pt/e/bilhetes-reuniao-networking-empresarial-1982316010550"
+  },
+  {
     "id": "bda96bdad385de86",
     "title": "Pedro Ferreira",
     "date": "2026-08-21T18:00:00+01:00",
@@ -54,6 +128,90 @@
     ],
     "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes Sem eventos de 20.08.2026 a 20.08.2026 21.08.2026 sexta-feira, 18:00 Sala 2 Sandra Cristina Fado e Música Tradicional Portuguesa Sandr",
     "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900"
+  },
+  {
+    "id": "48f0ac405ed79769",
+    "title": "CASA FEZ x SOLTEMPLE",
+    "date": "2026-08-22T00:00:00+01:00",
+    "venue": "Rua de Fez 627",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "music"
+    ],
+    "description": "A day-to-night journey of ecstatic dance, poolside sunsets, and an all-night electronic music experience.",
+    "url": "https://www.eventbrite.com/e/casa-fez-x-soltemple-tickets-1994006953475"
+  },
+  {
+    "id": "6872a6ea1f1f9b70",
+    "title": "Explore Porto's Signature Cuisine - Food Tour in Porto | Cozymeal™",
+    "date": "2026-08-22T00:00:00+01:00",
+    "venue": "Location provided after booking",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "",
+    "url": "https://www.eventbrite.com/e/explore-portos-signature-cuisine-food-tour-in-porto-cozymealtm-tickets-1990282375161"
+  },
+  {
+    "id": "f3e0c73ef7ac7831",
+    "title": "Founders Running Club :: Porto",
+    "date": "2026-08-22T00:00:00+01:00",
+    "venue": "Anemone",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Global community with weekly events for founders, investors , operators and creators with 28000+ members, across 35+ cities in 25+ countries",
+    "url": "https://www.eventbrite.ca/e/founders-running-club-porto-tickets-1353934678069"
+  },
+  {
+    "id": "b476e3cdf094d573",
+    "title": "Live Music at Eddie.S.Klub",
+    "date": "2026-08-22T00:00:00+01:00",
+    "venue": "EDDIE.S.KLUB - Bar & Whisky Boutique",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "music"
+    ],
+    "description": "We welcome back live music acts in our events venue, down in the basement.",
+    "url": "https://www.eventbrite.pt/e/live-music-at-eddiesklub-tickets-1998213516418"
+  },
+  {
+    "id": "1526118eaf74e561",
+    "title": "Porto: Crazy Pub Crawl with 9 Drinks, Free Shots, Wild Games + VIP",
+    "date": "2026-08-22T00:00:00+01:00",
+    "venue": "Praça de Carlos Alberto",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Join Porto’s #1 craziest and fastest-growing pub crawl, best deal in town! 4+ top bars & club, 9+ free drinks & shots +VIP entry. Book now!",
+    "url": "https://www.eventbrite.pt/e/porto-crazy-pub-crawl-with-9-drinks-free-shots-wild-games-vip-tickets-1988487766438"
+  },
+  {
+    "id": "4f34a04425b1271a",
+    "title": "Porto expats meetup",
+    "date": "2026-08-23T00:00:00+01:00",
+    "venue": "Yard Tapas & Cocktail Garden",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Third official meetup of Porto expats!",
+    "url": "https://www.eventbrite.com/e/porto-expats-meetup-tickets-1996782897398"
+  },
+  {
+    "id": "03088e8a8ff021c1",
+    "title": "Porto: Fado Concert in one of Porto's most beautiful houses!",
+    "date": "2026-08-23T00:00:00+01:00",
+    "venue": "R. Dr. Alberto Aires de Gouveia 15",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "concert",
+      "fado"
+    ],
+    "description": "Enjoy an hour of FADO with a glass of Port Wine and a taste of typical portuguese pastry in one of Portos finest manor houses!",
+    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1990453670510"
   },
   {
     "id": "b7daf853995618a4",
@@ -112,6 +270,17 @@
     "url": "https://casadamusica.com/event/touriga/?selected_session=54265"
   },
   {
+    "id": "4ac2a974f4a2b29d",
+    "title": "Creative Mornings",
+    "date": "2026-08-28T00:00:00+01:00",
+    "venue": "Praça Dom João I",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Start your day with inspiring talks, fresh ideas, great coffee, and meaningful connections at CreativeMornings Porto.",
+    "url": "https://www.eventbrite.co.uk/e/creative-mornings-tickets-1996244119900"
+  },
+  {
     "id": "0310ad2ec14b9098",
     "title": "Pedro Ferreira",
     "date": "2026-08-28T18:00:00+01:00",
@@ -138,5 +307,38 @@
     ],
     "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes Sem eventos de 27.08.2026 a 27.08.2026 28.08.2026 sexta-feira, 18:00 Sala 2 Sandra Cristina Fado e Música Tradicional Portuguesa Sandr",
     "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53899"
+  },
+  {
+    "id": "3d81a99fa71db733",
+    "title": "Pulse Session",
+    "date": "2026-08-29T00:00:00+01:00",
+    "venue": "Eurostars Porto Douro",
+    "city": "braga",
+    "category": "other",
+    "topics": [],
+    "description": "Um sunset para reviver emoções, sentir o som e deixar a nostalgia guiar a energia da pista.",
+    "url": "https://www.eventbrite.com/e/bilhetes-pulse-session-1992588973258"
+  },
+  {
+    "id": "bd866b2961b16b64",
+    "title": "Finding Your North Star (and Swallowing It)",
+    "date": "2026-08-30T00:00:00+01:00",
+    "venue": "Eventbrite",
+    "city": "braga",
+    "category": "other",
+    "topics": [],
+    "description": "An online workshop w/ Gabi Abrão & Janaka Stucky",
+    "url": "https://www.eventbrite.com/e/finding-your-north-star-and-swallowing-it-tickets-1996353443891"
+  },
+  {
+    "id": "692fb6d4a6a4af1e",
+    "title": "Underwater Wildlife Photography Essentials with Evie Wilderness | Online",
+    "date": "2026-09-01T00:00:00+01:00",
+    "venue": "Eventbrite",
+    "city": "braga",
+    "category": "other",
+    "topics": [],
+    "description": "Join Nikon Creator Evie Wilderness and discover underwater wildlife photography techniques, settings, and post-processing",
+    "url": "https://www.eventbrite.com.au/e/underwater-wildlife-photography-essentials-with-evie-wilderness-online-tickets-1988377237844"
   }
 ]

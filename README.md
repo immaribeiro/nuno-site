@@ -30,7 +30,7 @@ No backend, API, authentication, or runtime service is required.
 
 ## Events pipeline
 
-`fetch_events.py` collects public cultural events in Porto and Braga from venue agenda pages and Portuguese ticketing pages, then writes the static `public/events.json` consumed by the site. The base pipeline is keyless; Eventbrite is optional when `EVENTS_EBRITE_TOKEN` is set.
+`fetch_events.py` collects public cultural events in Porto and Braga from venue agenda pages and Portuguese ticketing pages, then writes the static `public/events.json` consumed by the site. The base pipeline is keyless; set `EVENTS_EBRITE_TOKEN` (any value) to also pull Eventbrite's public Porto/Braga browse pages (Eventbrite's public search API was retired in 2020, so the pages are scraped — no API auth is needed).
 
 ```bash
 python fetch_events.py                 # today through the next 14 days

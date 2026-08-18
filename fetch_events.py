@@ -2,7 +2,8 @@
 """Fetch near-term Porto and Braga cultural events into public/events.json.
 
 The default sources are public venue/ticketing pages and require no credentials.
-Set EVENTS_EBRITE_TOKEN to opt into Eventbrite's public event search.
+Set EVENTS_EBRITE_TOKEN to opt into Eventbrite public browse pages (their public
+search API was retired in 2020; the token now just acts as the opt-in switch).
 """
 from __future__ import annotations
 
@@ -16,7 +17,7 @@ import sys
 from datetime import datetime, timedelta, time
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlencode, urljoin
+from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
@@ -142,18 +143,61 @@ def from_links(parser, base, venue, city, now, cutoff, topics):
         out.append({"id":event_id(title,dt.isoformat(),venue),"title":title,"date":dt.isoformat(),"venue":venue,"city":city,"category":category,"topics":matched,"description":desc,"url":urljoin(base,href)})
     return out
 
+EB_PAGES = {
+    "porto": "https://www.eventbrite.com/d/portugal--porto/events/",
+    "braga": "https://www.eventbrite.com/d/portugal--braga/events/",
+}
+EB_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+
+def _eb_events_from_html(body):
+    """Extract Event objects from Eventbrite's __SERVER_DATA__ JSON-LD."""
+    i = body.find("window.__SERVER_DATA__")
+    if i < 0: return []
+    j = body.find("=", i)
+    if j < 0: return []
+    k = j + 1; depth = 0; instr = False; esc = False
+    while k < len(body):
+        c = body[k]
+        if instr:
+            if esc: esc = False
+            elif c == "\\": esc = True
+            elif c == '"': instr = False
+        else:
+            if c == '"': instr = True
+            elif c == "{": depth += 1
+            elif c == "}":
+                depth -= 1
+                if depth == 0: break
+        k += 1
+    if depth != 0: return []
+    try: data = json.loads(body[j + 1:k + 1])
+    except ValueError: return []
+    items = []
+    for block in data.get("jsonld") or []:
+        for le in block.get("itemListElement") or []:
+            item = le.get("item") or {}
+            if item.get("@type") == "Event" and item.get("name"):
+                items.append(item)
+    return items
+
 def eventbrite(token, city, now, cutoff, topics):
-    if not token or city not in ("porto","braga"): return []
-    params=urlencode({"location.address": city+", Portugal", "start_date.range_start":now.isoformat(), "start_date.range_end":cutoff.isoformat(), "expand":"venue"})
-    req=Request("https://www.eventbriteapi.com/v3/events/?"+params, headers={"Authorization":"Bearer "+token,"User-Agent":"nuno-events/1.0"})
-    try: data=json.loads(urlopen(req,timeout=20).read().decode())
-    except Exception as exc: print("Eventbrite skipped:",exc,file=sys.stderr); return []
-    out=[]
-    for x in data.get("events",[]):
-        dt=parse_date((x.get("start") or {}).get("local"),now); name=clean(x.get("name",{}).get("text"),160)
-        if not dt or not name: continue
-        loc=x.get("venue") or {}; venue=clean(loc.get("name","Eventbrite")); desc=clean((x.get("description") or {}).get("text",""),200); cat,matched=classify(name,desc,topics)
-        out.append({"id":event_id(name,dt.isoformat(),venue),"title":name,"date":dt.isoformat(),"venue":venue,"city":city,"category":cat,"topics":matched,"description":desc,"url":x.get("url","")})
+    # Eventbrite's public search API (GET /v3/events/search/) was retired in
+    # 2020, so we scrape their public browse pages instead. The token is now
+    # just the opt-in switch: without EVENTS_EBRITE_TOKEN this stays silent.
+    if not token or city not in EB_PAGES: return []
+    req = Request(EB_PAGES[city], headers={"User-Agent": EB_UA, "Accept-Language": "pt-PT,pt;q=0.9,en;q=0.8"})
+    try: body = urlopen(req, timeout=25).read().decode("utf-8", "replace")
+    except Exception as exc: print("Eventbrite skipped:", exc, file=sys.stderr); return []
+    out = []
+    for x in _eb_events_from_html(body):
+        dt = parse_date(x.get("startDate"), now)
+        name = clean(x.get("name"), 160)
+        if not dt or not name or not (now <= dt <= cutoff): continue
+        loc = x.get("location") or {}
+        venue = clean(loc.get("name") or "Eventbrite")
+        desc = clean(x.get("description"), 200)
+        cat, matched = classify(name, desc, topics)
+        out.append({"id": event_id(name, dt.isoformat(), venue), "title": name, "date": dt.isoformat(), "venue": venue, "city": city, "category": cat, "topics": matched, "description": desc, "url": x.get("url", "")})
     return out
 
 def main():
