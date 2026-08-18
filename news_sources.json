@@ -1,0 +1,28 @@
+{
+  "max_per_source": 6,
+  "max_total": 60,
+  "categories": ["portugal", "local", "world", "music", "ai"],
+  "feeds": [
+    { "name": "Público", "category": "portugal", "url": "https://feeds.feedburner.com/PublicoRSS" },
+    { "name": "Observador", "category": "portugal", "url": "https://observador.pt/feed/" },
+    { "name": "Jornal de Negócios", "category": "portugal", "url": "https://www.jornaldenegocios.pt/rss/" },
+    { "name": "O Minho", "category": "local", "url": "https://ominho.pt/feed/" },
+    { "name": "Porto Canal", "category": "local", "url": "https://portocanal.sapo.pt/feed/" },
+    { "name": "ComUM (Braga)", "category": "local", "url": "https://www.comumonline.com/feed/" },
+    { "name": "BBC World", "category": "world", "url": "https://feeds.bbci.co.uk/news/world/rss.xml" },
+    { "name": "The Guardian World", "category": "world", "url": "https://www.theguardian.com/world/rss" },
+    { "name": "NYT World", "category": "world", "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" },
+    { "name": "Al Jazeera", "category": "world", "url": "https://www.aljazeera.com/xml/rss/all.xml" },
+    { "name": "Euronews", "category": "world", "url": "https://www.euronews.com/rss" },
+    { "name": "France24", "category": "world", "url": "https://www.france24.com/en/rss" },
+    { "name": "NPR World", "category": "world", "url": "https://feeds.npr.org/1001/rss.xml" },
+    { "name": "NME", "category": "music", "url": "https://www.nme.com/feed" },
+    { "name": "Pitchfork", "category": "music", "url": "https://pitchfork.com/feed/feed-news/rss" },
+    { "name": "Rolling Stone Music", "category": "music", "url": "https://www.rollingstone.com/music/feed/" },
+    { "name": "Loudwire", "category": "music", "url": "https://loudwire.com/feed/" },
+    { "name": "The Verge AI", "category": "ai", "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml" },
+    { "name": "VentureBeat", "category": "ai", "url": "https://venturebeat.com/feed/" },
+    { "name": "MIT Tech Review", "category": "ai", "url": "https://www.technologyreview.com/feed/" },
+    { "name": "Ars Technica", "category": "ai", "url": "https://feeds.arstechnica.com/arstechnica/technology-lab" }
+  ]
+}

@@ -1,6 +1,7 @@
 {
-  "focus": ["jazz", "fado"],
   "categories": ["music", "theater", "arts"],
+  "focus": ["jazz", "fado"],
+  "news_focus": [],
   "keywords": {
     "music": ["concerto", "concert", "jazz", "fado", "orquestra", "guitarra", "festival", "música", "music"],
     "theater": ["teatro", "theatre", "peça", "comédia", "drama", "hamlet", "espetáculo", "cinema"],

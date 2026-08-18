@@ -35,8 +35,22 @@ No backend, API, authentication, or runtime service is required.
 ```bash
 python fetch_events.py                 # today through the next 14 days
 python fetch_events.py --days 30 --city porto
-python fetch_events.py --force          # rewrite even if unchanged
+python fetch_events.py --force         # rewrite even if unchanged
 ```
+
+### Prices
+
+`fetch_events.py` enriches events with a `price` field when possible: Eventbrite detail pages expose JSON-LD `AggregateOffer` (`lowPrice`/`highPrice`) and venue detail pages are scanned for € amounts (e.g. `€14–19.5`). The field is omitted when nothing reliable is found.
+
+## News pipeline
+
+`fetch_news.py` is a keyless RSS/Atom aggregator (stdlib only) that writes `public/news.json` — the site's News page. Sources and per-category limits live in `news_sources.json`; categories are `portugal`, `local` (Porto & Braga), `world`, `music`, `ai`, each guaranteed a quota so fast feeds (Observador, BBC) don't drown out slower ones. `topics.json` → `news_focus` is the shared topic list for the News page's chips.
+
+```bash
+python fetch_news.py          # → public/news.json (60 articles, newest first)
+```
+
+Both fetchers run daily at 06:00 via `events-fetch.sh` (cron `e603916439e3`): if `events.json` or `news.json` changed, a commit+push triggers CI → k3s rollout; otherwise the run is silent.
 
 Edit [`topics.json`](./topics.json) to change category keywords and the `focus` list. Each focus topic (currently `jazz` and `fado`) also triggers an Eventbrite topic-page scrape for each city, and every event gets a `focus` array containing focus topics found case-insensitively in its title, description, or venue. Each event is also tagged with matching keywords and one category (`music`, `theater`, `arts`, or `other`). Events are normalized to Europe/Lisbon ISO-8601 timestamps, deduplicated, and sorted by date. Failed sources are reported but do not prevent other sources from being written. The UI's event chips and star pins read `topics.json` and `pinned.json`.
 
