@@ -27,3 +27,21 @@ npm run preview
 - `src/styles.css` — Tailwind layers plus the motion, grain, and image treatment tokens.
 
 No backend, API, authentication, or runtime service is required.
+
+## Events pipeline
+
+`fetch_events.py` collects public cultural events in Porto and Braga from venue agenda pages and Portuguese ticketing pages, then writes the static `public/events.json` consumed by the site. The base pipeline is keyless; Eventbrite is optional when `EVENTS_EBRITE_TOKEN` is set.
+
+```bash
+python fetch_events.py                 # today through the next 14 days
+python fetch_events.py --days 30 --city porto
+python fetch_events.py --force          # rewrite even if unchanged
+```
+
+Edit [`topics.json`](./topics.json) to change category keywords. Each event is tagged with matching keywords and one category (`music`, `theater`, `arts`, or `other`). Events are normalized to Europe/Lisbon ISO-8601 timestamps, deduplicated, and sorted by date. Failed sources are reported but do not prevent other sources from being written.
+
+For a daily macOS cron job, run from the repository and commit/push the generated file after fetching (use an absolute path to Python):
+
+```cron
+15 7 * * * cd /Users/imma/GitHub/nuno-site && /Users/imma/GitHub/nuno-site/.venv/bin/python fetch_events.py && git add public/events.json && git diff --cached --quiet || (git commit -m 'chore: refresh events' && git push)
+```

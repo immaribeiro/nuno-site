@@ -1,0 +1,8 @@
+{
+  "categories": ["music", "theater", "arts"],
+  "keywords": {
+    "music": ["concerto", "concert", "jazz", "fado", "orquestra", "guitarra", "festival", "música", "music"],
+    "theater": ["teatro", "theatre", "peça", "comédia", "drama", "hamlet", "espetáculo", "cinema"],
+    "arts": ["exposição", "exhibition", "museu", "arte", "galeria", "gallery", "cinema", "dança", "performance"]
+  }
+}
