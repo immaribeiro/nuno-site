@@ -8,7 +8,8 @@
     "category": "other",
     "topics": [],
     "description": "Join Porto's biggest pub crawl. Play Beer Pong, Flip Cup & fun challenges. Get 8 drinks, zero lines at 4 top bars and hit the best club",
-    "url": "https://www.eventbrite.co.uk/e/porto-nightlife-pub-crawl-4-bars-8-drinks-games-vip-club-entry-tickets-1965407393421"
+    "url": "https://www.eventbrite.co.uk/e/porto-nightlife-pub-crawl-4-bars-8-drinks-games-vip-club-entry-tickets-1965407393421",
+    "focus": []
   },
   {
     "id": "ff0d28f7e086a6e0",
@@ -24,7 +25,8 @@
       "comédia"
     ],
     "description": "À terça, quarta, sexta e sábado há música, sessões de comédia, microfone aberto a músicos ou noites temáticas. Os 5€ são consumíveis.",
-    "url": "https://www.eventbrite.pt/e/bilhetes-concertos-e-eventos-castlerock-pub-hotel-porto-1992116739795"
+    "url": "https://www.eventbrite.pt/e/bilhetes-concertos-e-eventos-castlerock-pub-hotel-porto-1992116739795",
+    "focus": []
   },
   {
     "id": "276945cd57480cda",
@@ -38,7 +40,10 @@
       "música"
     ],
     "description": "class=\"button-link button--with-icon group\" > Saber mais 19.08.2026 quarta-feira, 18:00 Sala 2 Pedro Ferreira Fado e Música Tradicional POrtuguesa Natural de Vila Nova de Gaia, Pedro Ferreira revelou ",
-    "url": "https://casadamusica.com/event/touriga/?selected_session=54266"
+    "url": "https://casadamusica.com/event/touriga/?selected_session=54266",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "2524acce0abdef3d",
@@ -52,7 +57,22 @@
       "música"
     ],
     "description": "> Touriga Fado e Música Tradicional POrtuguesa Touriga é uma casta de uvas tintas proveniente das mais nobres linhagens portuguesas. Uma uva especial, um vinho recheado de História, uma memória ancest",
-    "url": "https://casadamusica.com/event/touriga/?selected_session=54266"
+    "url": "https://casadamusica.com/event/touriga/?selected_session=54266",
+    "focus": [
+      "fado"
+    ]
+  },
+  {
+    "id": "9b6473878f944f0f",
+    "title": "ENGLISH STAND UP COMEDY OPEN MIC @Porto",
+    "date": "2026-08-20T00:00:00+01:00",
+    "venue": "Maria Pistolas",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Get ready to laugh out loud at the English Stand Up Comedy Open Mic in Porto – show up and crack up!",
+    "url": "https://www.eventbrite.pt/e/english-stand-up-comedy-open-mic-porto-tickets-1979465239818",
+    "focus": []
   },
   {
     "id": "5adc5c5b801483f5",
@@ -63,7 +83,8 @@
     "category": "other",
     "topics": [],
     "description": "Uma terapia de som ✨ (individual session/sessão individual)",
-    "url": "https://www.eventbrite.com/e/cura-de-som-sound-healing-chakra-alignment-tickets-1984557863994"
+    "url": "https://www.eventbrite.com/e/cura-de-som-sound-healing-chakra-alignment-tickets-1984557863994",
+    "focus": []
   },
   {
     "id": "3c127bcd66271f91",
@@ -74,7 +95,8 @@
     "category": "other",
     "topics": [],
     "description": "Experience Porto’s soul at a slower pace. Enjoy 3 local spots with drinks and food, ending at an iconic viewpoint for the sunset. Authentic",
-    "url": "https://www.eventbrite.co.uk/e/porto-sunset-pubcrawl-tickets-1989094156166"
+    "url": "https://www.eventbrite.co.uk/e/porto-sunset-pubcrawl-tickets-1989094156166",
+    "focus": []
   },
   {
     "id": "c3aceb579ab79d61",
@@ -88,7 +110,10 @@
       "fado"
     ],
     "description": "Enjoy an hour of FADO in a very central location, in a magnificent building in Porto Downtow (near Bolhao Metro Station)!",
-    "url": "https://www.eventbrite.pt/e/bilhetes-porto-live-fado-concert-in-a-beautiful-19th-century-palace-1986706985073"
+    "url": "https://www.eventbrite.pt/e/bilhetes-porto-live-fado-concert-in-a-beautiful-19th-century-palace-1986706985073",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "8f7fef987d8656c0",
@@ -99,7 +124,8 @@
     "category": "other",
     "topics": [],
     "description": "Networking BNI Portucale! Empresários reúnem-se semanalmente para trocar negócios. Já geramos +30M€! Sextas, 7h na Fundação AEP",
-    "url": "https://www.eventbrite.pt/e/bilhetes-reuniao-networking-empresarial-1982316010550"
+    "url": "https://www.eventbrite.pt/e/bilhetes-reuniao-networking-empresarial-1982316010550",
+    "focus": []
   },
   {
     "id": "bda96bdad385de86",
@@ -113,7 +139,10 @@
       "música"
     ],
     "description": "> Pedro Ferreira Fado e Música Tradicional POrtuguesa Natural de Vila Nova de Gaia, Pedro Ferreira revelou desde muito cedo uma enorme paixão pela música. A descoberta do fado chegou em 2015, com a pa",
-    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900"
+    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "9f505824b0874673",
@@ -127,7 +156,10 @@
       "música"
     ],
     "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes Sem eventos de 20.08.2026 a 20.08.2026 21.08.2026 sexta-feira, 18:00 Sala 2 Sandra Cristina Fado e Música Tradicional Portuguesa Sandr",
-    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900"
+    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "48f0ac405ed79769",
@@ -140,7 +172,8 @@
       "music"
     ],
     "description": "A day-to-night journey of ecstatic dance, poolside sunsets, and an all-night electronic music experience.",
-    "url": "https://www.eventbrite.com/e/casa-fez-x-soltemple-tickets-1994006953475"
+    "url": "https://www.eventbrite.com/e/casa-fez-x-soltemple-tickets-1994006953475",
+    "focus": []
   },
   {
     "id": "6872a6ea1f1f9b70",
@@ -151,7 +184,8 @@
     "category": "other",
     "topics": [],
     "description": "",
-    "url": "https://www.eventbrite.com/e/explore-portos-signature-cuisine-food-tour-in-porto-cozymealtm-tickets-1990282375161"
+    "url": "https://www.eventbrite.com/e/explore-portos-signature-cuisine-food-tour-in-porto-cozymealtm-tickets-1990282375161",
+    "focus": []
   },
   {
     "id": "f3e0c73ef7ac7831",
@@ -162,7 +196,8 @@
     "category": "other",
     "topics": [],
     "description": "Global community with weekly events for founders, investors , operators and creators with 28000+ members, across 35+ cities in 25+ countries",
-    "url": "https://www.eventbrite.ca/e/founders-running-club-porto-tickets-1353934678069"
+    "url": "https://www.eventbrite.ca/e/founders-running-club-porto-tickets-1353934678069",
+    "focus": []
   },
   {
     "id": "b476e3cdf094d573",
@@ -175,7 +210,8 @@
       "music"
     ],
     "description": "We welcome back live music acts in our events venue, down in the basement.",
-    "url": "https://www.eventbrite.pt/e/live-music-at-eddiesklub-tickets-1998213516418"
+    "url": "https://www.eventbrite.pt/e/live-music-at-eddiesklub-tickets-1998213516418",
+    "focus": []
   },
   {
     "id": "1526118eaf74e561",
@@ -186,7 +222,8 @@
     "category": "other",
     "topics": [],
     "description": "Join Porto’s #1 craziest and fastest-growing pub crawl, best deal in town! 4+ top bars & club, 9+ free drinks & shots +VIP entry. Book now!",
-    "url": "https://www.eventbrite.pt/e/porto-crazy-pub-crawl-with-9-drinks-free-shots-wild-games-vip-tickets-1988487766438"
+    "url": "https://www.eventbrite.pt/e/porto-crazy-pub-crawl-with-9-drinks-free-shots-wild-games-vip-tickets-1988487766438",
+    "focus": []
   },
   {
     "id": "4f34a04425b1271a",
@@ -197,7 +234,8 @@
     "category": "other",
     "topics": [],
     "description": "Third official meetup of Porto expats!",
-    "url": "https://www.eventbrite.com/e/porto-expats-meetup-tickets-1996782897398"
+    "url": "https://www.eventbrite.com/e/porto-expats-meetup-tickets-1996782897398",
+    "focus": []
   },
   {
     "id": "03088e8a8ff021c1",
@@ -211,7 +249,10 @@
       "fado"
     ],
     "description": "Enjoy an hour of FADO with a glass of Port Wine and a taste of typical portuguese pastry in one of Portos finest manor houses!",
-    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1990453670510"
+    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1990453670510",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "b7daf853995618a4",
@@ -225,7 +266,10 @@
       "música"
     ],
     "description": "> Sandra Cristina Fado e Música Tradicional Portuguesa Sandra Cristina imprime ao fado um ritmo pessoal carregado de paixão e elegância, com uma intensidade que prende qualquer sala. Percorre palcos n",
-    "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53739"
+    "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53739",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "8905d8e0e0bcfa3c",
@@ -239,7 +283,10 @@
       "música"
     ],
     "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes Sem eventos de 22.08.2026 a 24.08.2026 25.08.2026 terça-feira, 18:00 Sala 2 Touriga Fado e Música Tradicional POrtuguesa Touriga é uma",
-    "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53739"
+    "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53739",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "e6c57db376a3c19d",
@@ -253,7 +300,10 @@
       "música"
     ],
     "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes 26.08.2026 quarta-feira, 18:00 Sala 2 Pedro Ferreira Fado e Música Tradicional POrtuguesa Natural de Vila Nova de Gaia, Pedro Ferreira",
-    "url": "https://casadamusica.com/event/touriga/?selected_session=54265"
+    "url": "https://casadamusica.com/event/touriga/?selected_session=54265",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "e894f5cb7b1991c8",
@@ -267,7 +317,10 @@
       "música"
     ],
     "description": "> Touriga Fado e Música Tradicional POrtuguesa Touriga é uma casta de uvas tintas proveniente das mais nobres linhagens portuguesas. Uma uva especial, um vinho recheado de História, uma memória ancest",
-    "url": "https://casadamusica.com/event/touriga/?selected_session=54265"
+    "url": "https://casadamusica.com/event/touriga/?selected_session=54265",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "4ac2a974f4a2b29d",
@@ -278,7 +331,8 @@
     "category": "other",
     "topics": [],
     "description": "Start your day with inspiring talks, fresh ideas, great coffee, and meaningful connections at CreativeMornings Porto.",
-    "url": "https://www.eventbrite.co.uk/e/creative-mornings-tickets-1996244119900"
+    "url": "https://www.eventbrite.co.uk/e/creative-mornings-tickets-1996244119900",
+    "focus": []
   },
   {
     "id": "0310ad2ec14b9098",
@@ -292,7 +346,10 @@
       "música"
     ],
     "description": "> Pedro Ferreira Fado e Música Tradicional POrtuguesa Natural de Vila Nova de Gaia, Pedro Ferreira revelou desde muito cedo uma enorme paixão pela música. A descoberta do fado chegou em 2015, com a pa",
-    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53899"
+    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53899",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "1fab564a5696146c",
@@ -306,7 +363,10 @@
       "música"
     ],
     "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes Sem eventos de 27.08.2026 a 27.08.2026 28.08.2026 sexta-feira, 18:00 Sala 2 Sandra Cristina Fado e Música Tradicional Portuguesa Sandr",
-    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53899"
+    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53899",
+    "focus": [
+      "fado"
+    ]
   },
   {
     "id": "3d81a99fa71db733",
@@ -317,7 +377,8 @@
     "category": "other",
     "topics": [],
     "description": "Um sunset para reviver emoções, sentir o som e deixar a nostalgia guiar a energia da pista.",
-    "url": "https://www.eventbrite.com/e/bilhetes-pulse-session-1992588973258"
+    "url": "https://www.eventbrite.com/e/bilhetes-pulse-session-1992588973258",
+    "focus": []
   },
   {
     "id": "bd866b2961b16b64",
@@ -328,7 +389,8 @@
     "category": "other",
     "topics": [],
     "description": "An online workshop w/ Gabi Abrão & Janaka Stucky",
-    "url": "https://www.eventbrite.com/e/finding-your-north-star-and-swallowing-it-tickets-1996353443891"
+    "url": "https://www.eventbrite.com/e/finding-your-north-star-and-swallowing-it-tickets-1996353443891",
+    "focus": []
   },
   {
     "id": "692fb6d4a6a4af1e",
@@ -339,6 +401,7 @@
     "category": "other",
     "topics": [],
     "description": "Join Nikon Creator Evie Wilderness and discover underwater wildlife photography techniques, settings, and post-processing",
-    "url": "https://www.eventbrite.com.au/e/underwater-wildlife-photography-essentials-with-evie-wilderness-online-tickets-1988377237844"
+    "url": "https://www.eventbrite.com.au/e/underwater-wildlife-photography-essentials-with-evie-wilderness-online-tickets-1988377237844",
+    "focus": []
   }
 ]

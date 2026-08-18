@@ -30,7 +30,7 @@ No backend, API, authentication, or runtime service is required.
 
 ## Events pipeline
 
-`fetch_events.py` collects public cultural events in Porto and Braga from venue agenda pages and Portuguese ticketing pages, then writes the static `public/events.json` consumed by the site. The base pipeline is keyless; set `EVENTS_EBRITE_TOKEN` (any value) to also pull Eventbrite's public Porto/Braga browse pages (Eventbrite's public search API was retired in 2020, so the pages are scraped — no API auth is needed).
+`fetch_events.py` collects public cultural events in Porto and Braga from venue agenda pages, Portuguese ticketing pages, and Eventbrite's public pages, then writes the static `public/events.json` consumed by the site. Eventbrite is always-on and keyless: its public search API was retired in 2020, so the Porto/Braga browse pages are scraped directly without API authentication.
 
 ```bash
 python fetch_events.py                 # today through the next 14 days
@@ -38,7 +38,7 @@ python fetch_events.py --days 30 --city porto
 python fetch_events.py --force          # rewrite even if unchanged
 ```
 
-Edit [`topics.json`](./topics.json) to change category keywords. Each event is tagged with matching keywords and one category (`music`, `theater`, `arts`, or `other`). Events are normalized to Europe/Lisbon ISO-8601 timestamps, deduplicated, and sorted by date. Failed sources are reported but do not prevent other sources from being written.
+Edit [`topics.json`](./topics.json) to change category keywords and the `focus` list. Each focus topic (currently `jazz` and `fado`) also triggers an Eventbrite topic-page scrape for each city, and every event gets a `focus` array containing focus topics found case-insensitively in its title, description, or venue. Each event is also tagged with matching keywords and one category (`music`, `theater`, `arts`, or `other`). Events are normalized to Europe/Lisbon ISO-8601 timestamps, deduplicated, and sorted by date. Failed sources are reported but do not prevent other sources from being written. The UI's event chips and star pins read `topics.json` and `pinned.json`.
 
 For a daily macOS cron job, run from the repository and commit/push the generated file after fetching (use an absolute path to Python):
 

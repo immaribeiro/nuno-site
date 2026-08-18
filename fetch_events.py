@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Fetch near-term Porto and Braga cultural events into public/events.json.
 
-The default sources are public venue/ticketing pages and require no credentials.
-Set EVENTS_EBRITE_TOKEN to opt into Eventbrite public browse pages (their public
-search API was retired in 2020; the token now just acts as the opt-in switch).
+All sources, including Eventbrite's public browse and focus-topic pages, are
+keyless. Eventbrite's public search API was retired in 2020, so its pages are
+scraped directly.
 """
 from __future__ import annotations
 
@@ -173,21 +173,27 @@ def _eb_events_from_html(body):
     try: data = json.loads(body[j + 1:k + 1])
     except ValueError: return []
     items = []
-    for block in data.get("jsonld") or []:
-        for le in block.get("itemListElement") or []:
+    blocks = data.get("jsonld") or []
+    if isinstance(blocks, dict): blocks = [blocks]
+    if isinstance(blocks, list) and any(isinstance(block, list) for block in blocks):
+        blocks = [entry for block in blocks if isinstance(block, list) for entry in block]
+    for block in blocks:
+        if not isinstance(block, dict): continue
+        elements = block.get("itemListElement") or []
+        if isinstance(elements, dict): elements = [elements]
+        for le in elements:
+            if not isinstance(le, dict): continue
             item = le.get("item") or {}
             if item.get("@type") == "Event" and item.get("name"):
                 items.append(item)
     return items
 
-def eventbrite(token, city, now, cutoff, topics):
-    # Eventbrite's public search API (GET /v3/events/search/) was retired in
-    # 2020, so we scrape their public browse pages instead. The token is now
-    # just the opt-in switch: without EVENTS_EBRITE_TOKEN this stays silent.
-    if not token or city not in EB_PAGES: return []
-    req = Request(EB_PAGES[city], headers={"User-Agent": EB_UA, "Accept-Language": "pt-PT,pt;q=0.9,en;q=0.8"})
+def eventbrite_page(url, city, now, cutoff, topics):
+    """Scrape one public Eventbrite page and normalize its events."""
+    req = Request(url, headers={"User-Agent": EB_UA, "Accept-Language": "pt-PT,pt;q=0.9,en;q=0.8"})
     try: body = urlopen(req, timeout=25).read().decode("utf-8", "replace")
-    except Exception as exc: print("Eventbrite skipped:", exc, file=sys.stderr); return []
+    except Exception as exc: print("Eventbrite skipped:", url, "-", exc, file=sys.stderr); return []
+    print("OK Eventbrite", url, file=sys.stderr)
     out = []
     for x in _eb_events_from_html(body):
         dt = parse_date(x.get("startDate"), now)
@@ -199,6 +205,17 @@ def eventbrite(token, city, now, cutoff, topics):
         cat, matched = classify(name, desc, topics)
         out.append({"id": event_id(name, dt.isoformat(), venue), "title": name, "date": dt.isoformat(), "venue": venue, "city": city, "category": cat, "topics": matched, "description": desc, "url": x.get("url", "")})
     return out
+
+def eventbrite(city, now, cutoff, topics):
+    """Scrape Eventbrite's always-on city browse page."""
+    return eventbrite_page(EB_PAGES[city], city, now, cutoff, topics)
+
+def focus_events(events, topics):
+    focus = [str(topic) for topic in topics.get("focus", [])]
+    for event in events:
+        hay = " ".join((event.get("title", ""), event.get("description", ""), event.get("venue", ""))).casefold()
+        event["focus"] = [topic for topic in focus if topic.casefold() in hay]
+    return events
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--days",type=int,default=14); ap.add_argument("--city",choices=("porto","braga","all"),default="all"); ap.add_argument("--force",action="store_true"); ap.add_argument("--source-url",action="append",help=argparse.SUPPRESS); args=ap.parse_args()
@@ -217,10 +234,14 @@ def main():
             print("OK", venue, url, file=sys.stderr)
         except Exception as exc: print("FAILED", venue, url, "-", exc, file=sys.stderr)
     if args.city=="all":
-        found += eventbrite(os.getenv("EVENTS_EBRITE_TOKEN"),"porto",now,cutoff,topics)+eventbrite(os.getenv("EVENTS_EBRITE_TOKEN"),"braga",now,cutoff,topics)
+        for city in ("porto", "braga"):
+            found += eventbrite(city, now, cutoff, topics)
+            for topic in topics.get("focus", []):
+                topic_url = EB_PAGES[city].replace("events/", str(topic).strip("/") + "/")
+                found += eventbrite_page(topic_url, city, now, cutoff, topics)
     unique={}
     for e in found: unique[(e["title"].casefold(),e["date"],e["venue"].casefold())]=e
-    events=sorted(unique.values(),key=lambda e:(e["date"],e["title"].casefold()))
+    events=focus_events(sorted(unique.values(),key=lambda e:(e["date"],e["title"].casefold())), topics)
     target=ROOT/"public/events.json"; target.parent.mkdir(exist_ok=True)
     payload=json.dumps(events,ensure_ascii=False,indent=2)+"\n"
     if args.force or not target.exists() or target.read_text()!=payload: target.write_text(payload); print("Wrote",target,"(",len(events),"events)")
