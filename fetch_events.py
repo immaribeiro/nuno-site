@@ -79,6 +79,41 @@ def parse_date(value, now):
 def clean(s, limit=500): return re.sub(r"\s+", " ", html.unescape(s or "")).strip()[:limit]
 def event_id(title,date,venue): return hashlib.sha256("|".join((title,date,venue)).casefold().encode()).hexdigest()[:16]
 
+def format_price(offers):
+    """Best-effort price string from schema.org offers (Offer / AggregateOffer)."""
+    if isinstance(offers, list): offers = offers[0] if offers else {}
+    if not isinstance(offers, dict): return None
+    def num(v):
+        try:
+            n = float(str(v).replace(",", "."))
+            if n == 0: return "0"
+            return f"{n:.2f}".rstrip("0").rstrip(".") if n % 1 else str(int(n))
+        except (TypeError, ValueError): return None
+    if str(offers.get("price", "")).strip().lower() in ("0", "0.00", "free", "gratis"): return "Free"
+    if offers.get("lowPrice") is not None or offers.get("highPrice") is not None:
+        lo, hi = num(offers.get("lowPrice")), num(offers.get("highPrice"))
+        if lo and hi and lo != hi: return f"€{lo}–{hi}"
+        if lo: return f"€{lo}"
+        if hi: return f"€{hi}"
+    raw = offers.get("price")
+    if raw is None: return None
+    s = str(raw).strip()
+    if s.lower() in ("free", "gratis", "0", "0.00"): return "Free"
+    n = num(s)
+    if n is None: return None
+    cur = str(offers.get("priceCurrency") or "").upper()
+    return f"€{n}" if cur in ("", "EUR") else f"{cur} {n}"
+
+def html_price(chunk):
+    """Best-effort price from venue HTML near an event link."""
+    plain = html.unescape(re.sub(r"<[^>]+>", " ", chunk[:1500]))
+    m = re.search(r"(?:from\s+)?(?:€|eur\.?\s*)\s*(\d+(?:[.,]\d+)?)", plain, re.I)
+    if m:
+        n = float(m.group(1).replace(",", "."))
+        return "Free" if n == 0 else ("€" + (f"{n:.2f}".rstrip("0").rstrip(".") if n % 1 else str(int(n))))
+    if re.search(r"\b(?:free|grátis|gratis|entrada livre)\b", plain, re.I): return "Free"
+    return None
+
 def classify(title, desc, topics):
     hay=(title+" "+desc).casefold(); matched=[]
     for category in topics.get("categories", []):
@@ -103,7 +138,8 @@ def from_jsonld(raw, base, venue, city, now, cutoff, topics):
             url=urljoin(base,x.get("url",base)); v=clean((x.get("location") or {}).get("name",venue)) if isinstance(x.get("location"),dict) else venue
             category,matched=classify(title,desc,topics)
             e={"id":event_id(title,dt.isoformat(),v),"title":title,"date":dt.isoformat(),"venue":v or venue,"city":city,"category":category,"topics":matched,"description":desc,"url":url}
-            if x.get("offers") and isinstance(x["offers"],dict) and x["offers"].get("price"): e["price"]=str(x["offers"]["price"])
+            p = format_price(x.get("offers"))
+            if p: e["price"] = p
             out.append(e)
     return out
 
@@ -124,7 +160,10 @@ def from_html_events(body, base, venue, city, now, cutoff, topics):
         title=re.sub(DATE_RE,'',title).strip(' -|')
         if len(title)<3: continue
         desc=clean(plain,200); category,matched=classify(title,desc,topics)
-        out.append({'id':event_id(title,dt.isoformat(),venue),'title':title,'date':dt.isoformat(),'venue':venue,'city':city,'category':category,'topics':matched,'description':desc,'url':urljoin(base,match.group(1))})
+        entry={'id':event_id(title,dt.isoformat(),venue),'title':title,'date':dt.isoformat(),'venue':venue,'city':city,'category':category,'topics':matched,'description':desc,'url':urljoin(base,match.group(1))}
+        p=html_price(chunk)
+        if p: entry['price']=p
+        out.append(entry)
     return out
 
 def from_links(parser, base, venue, city, now, cutoff, topics):
@@ -217,6 +256,45 @@ def focus_events(events, topics):
         event["focus"] = [topic for topic in focus if topic.casefold() in hay]
     return events
 
+def page_offers(body):
+    """AggregateOffer prices from a detail page's JSON-LD (Eventbrite style)."""
+    lows = re.findall(r'"lowPrice"\s*:\s*"([0-9.]+)"', body)
+    highs = re.findall(r'"highPrice"\s*:\s*"([0-9.]+)"', body)
+    if not lows and not highs: return None
+    curs = re.findall(r'"priceCurrency"\s*:\s*"([A-Z]{3})"', body)
+    cur = curs[0] if curs else "EUR"
+    return {"lowPrice": lows[0] if lows else highs[0], "highPrice": highs[0] if highs else lows[0], "priceCurrency": cur}
+
+def page_prices(body):
+    """Best-effort price range from €-amounts visible on a page (venue detail pages)."""
+    vals = []
+    for m in re.finditer(r"(?:€|EUR)\s*([0-9]+(?:[.,][0-9]+)?)", body, re.I):
+        try:
+            n = float(m.group(1).replace(",", "."))
+            if n > 0 and n not in vals: vals.append(n)
+        except ValueError: continue
+        if len(vals) >= 10: break
+    if vals:
+        def fmt(n): return f"{n:.2f}".rstrip("0").rstrip(".") if n % 1 else str(int(n))
+        lo, hi = min(vals), max(vals)
+        return f"€{fmt(lo)}" if lo == hi else f"€{fmt(lo)}–{fmt(hi)}"
+    if re.search(r"\b(?:entrada livre|grátis|gratis|free)\b", re.sub(r"<[^>]+>", " ", body[:60000]), re.I):
+        return "Free"
+    return None
+
+def detail_price(url, cache):
+    """Price from an event detail page, cached per URL (best-effort, never raises)."""
+    if url in cache: return cache[url]
+    cache[url] = None
+    try:
+        req = Request(url, headers={"User-Agent": EB_UA, "Accept-Language": "pt-PT,pt;q=0.9,en;q=0.8"})
+        body = urlopen(req, timeout=15).read().decode("utf-8", "replace")
+    except Exception:
+        return None
+    price = format_price(page_offers(body)) or page_prices(body)
+    cache[url] = price
+    return price
+
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--days",type=int,default=14); ap.add_argument("--city",choices=("porto","braga","all"),default="all"); ap.add_argument("--force",action="store_true"); ap.add_argument("--source-url",action="append",help=argparse.SUPPRESS); args=ap.parse_args()
     now=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0); cutoff=now+timedelta(days=args.days); topics=json.loads((ROOT/"topics.json").read_text())
@@ -242,6 +320,14 @@ def main():
     unique={}
     for e in found: unique[(e["title"].casefold(),e["date"],e["venue"].casefold())]=e
     events=focus_events(sorted(unique.values(),key=lambda e:(e["date"],e["title"].casefold())), topics)
+    # Price enrichment: fetch detail pages for events without a price (capped, cached per URL)
+    cache, fetched = {}, 0
+    for e in events:
+        if e.get("price") or not e.get("url") or fetched >= 30: continue
+        url = e["url"]
+        if url not in cache: fetched += 1
+        p = detail_price(url, cache)
+        if p: e["price"] = p
     target=ROOT/"public/events.json"; target.parent.mkdir(exist_ok=True)
     payload=json.dumps(events,ensure_ascii=False,indent=2)+"\n"
     if args.force or not target.exists() or target.read_text()!=payload: target.write_text(payload); print("Wrote",target,"(",len(events),"events)")

@@ -1,17 +1,5 @@
 [
   {
-    "id": "4f494305d649e302",
-    "title": "Porto Nightlife Pub Crawl | 4 Bars, 8 Drinks, Games & VIP Club Entry",
-    "date": "2026-08-18T00:00:00+01:00",
-    "venue": "Fonte dos Leões",
-    "city": "porto",
-    "category": "other",
-    "topics": [],
-    "description": "Join Porto's biggest pub crawl. Play Beer Pong, Flip Cup & fun challenges. Get 8 drinks, zero lines at 4 top bars and hit the best club",
-    "url": "https://www.eventbrite.co.uk/e/porto-nightlife-pub-crawl-4-bars-8-drinks-games-vip-club-entry-tickets-1965407393421",
-    "focus": []
-  },
-  {
     "id": "ff0d28f7e086a6e0",
     "title": "Concertos e eventos CastleRock - Pub & Hotel, Porto",
     "date": "2026-08-19T00:00:00+01:00",
@@ -26,7 +14,8 @@
     ],
     "description": "À terça, quarta, sexta e sábado há música, sessões de comédia, microfone aberto a músicos ou noites temáticas. Os 5€ são consumíveis.",
     "url": "https://www.eventbrite.pt/e/bilhetes-concertos-e-eventos-castlerock-pub-hotel-porto-1992116739795",
-    "focus": []
+    "focus": [],
+    "price": "€5"
   },
   {
     "id": "276945cd57480cda",
@@ -43,7 +32,8 @@
     "url": "https://casadamusica.com/event/touriga/?selected_session=54266",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "2524acce0abdef3d",
@@ -60,19 +50,8 @@
     "url": "https://casadamusica.com/event/touriga/?selected_session=54266",
     "focus": [
       "fado"
-    ]
-  },
-  {
-    "id": "9b6473878f944f0f",
-    "title": "ENGLISH STAND UP COMEDY OPEN MIC @Porto",
-    "date": "2026-08-20T00:00:00+01:00",
-    "venue": "Maria Pistolas",
-    "city": "porto",
-    "category": "other",
-    "topics": [],
-    "description": "Get ready to laugh out loud at the English Stand Up Comedy Open Mic in Porto – show up and crack up!",
-    "url": "https://www.eventbrite.pt/e/english-stand-up-comedy-open-mic-porto-tickets-1979465239818",
-    "focus": []
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "5adc5c5b801483f5",
@@ -84,7 +63,8 @@
     "topics": [],
     "description": "Uma terapia de som ✨ (individual session/sessão individual)",
     "url": "https://www.eventbrite.com/e/cura-de-som-sound-healing-chakra-alignment-tickets-1984557863994",
-    "focus": []
+    "focus": [],
+    "price": "€46.32"
   },
   {
     "id": "3c127bcd66271f91",
@@ -96,7 +76,8 @@
     "topics": [],
     "description": "Experience Porto’s soul at a slower pace. Enjoy 3 local spots with drinks and food, ending at an iconic viewpoint for the sunset. Authentic",
     "url": "https://www.eventbrite.co.uk/e/porto-sunset-pubcrawl-tickets-1989094156166",
-    "focus": []
+    "focus": [],
+    "price": "€20"
   },
   {
     "id": "c3aceb579ab79d61",
@@ -113,7 +94,8 @@
     "url": "https://www.eventbrite.pt/e/bilhetes-porto-live-fado-concert-in-a-beautiful-19th-century-palace-1986706985073",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€0–19"
   },
   {
     "id": "8f7fef987d8656c0",
@@ -125,7 +107,8 @@
     "topics": [],
     "description": "Networking BNI Portucale! Empresários reúnem-se semanalmente para trocar negócios. Já geramos +30M€! Sextas, 7h na Fundação AEP",
     "url": "https://www.eventbrite.pt/e/bilhetes-reuniao-networking-empresarial-1982316010550",
-    "focus": []
+    "focus": [],
+    "price": "€0"
   },
   {
     "id": "bda96bdad385de86",
@@ -142,7 +125,8 @@
     "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "9f505824b0874673",
@@ -159,7 +143,8 @@
     "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "48f0ac405ed79769",
@@ -173,7 +158,8 @@
     ],
     "description": "A day-to-night journey of ecstatic dance, poolside sunsets, and an all-night electronic music experience.",
     "url": "https://www.eventbrite.com/e/casa-fez-x-soltemple-tickets-1994006953475",
-    "focus": []
+    "focus": [],
+    "price": "€17.24"
   },
   {
     "id": "6872a6ea1f1f9b70",
@@ -185,7 +171,8 @@
     "topics": [],
     "description": "",
     "url": "https://www.eventbrite.com/e/explore-portos-signature-cuisine-food-tour-in-porto-cozymealtm-tickets-1990282375161",
-    "focus": []
+    "focus": [],
+    "price": "€112.24"
   },
   {
     "id": "f3e0c73ef7ac7831",
@@ -197,7 +184,8 @@
     "topics": [],
     "description": "Global community with weekly events for founders, investors , operators and creators with 28000+ members, across 35+ cities in 25+ countries",
     "url": "https://www.eventbrite.ca/e/founders-running-club-porto-tickets-1353934678069",
-    "focus": []
+    "focus": [],
+    "price": "€0"
   },
   {
     "id": "b476e3cdf094d573",
@@ -211,7 +199,8 @@
     ],
     "description": "We welcome back live music acts in our events venue, down in the basement.",
     "url": "https://www.eventbrite.pt/e/live-music-at-eddiesklub-tickets-1998213516418",
-    "focus": []
+    "focus": [],
+    "price": "€11.89"
   },
   {
     "id": "1526118eaf74e561",
@@ -223,7 +212,8 @@
     "topics": [],
     "description": "Join Porto’s #1 craziest and fastest-growing pub crawl, best deal in town! 4+ top bars & club, 9+ free drinks & shots +VIP entry. Book now!",
     "url": "https://www.eventbrite.pt/e/porto-crazy-pub-crawl-with-9-drinks-free-shots-wild-games-vip-tickets-1988487766438",
-    "focus": []
+    "focus": [],
+    "price": "€11.89"
   },
   {
     "id": "4f34a04425b1271a",
@@ -235,7 +225,8 @@
     "topics": [],
     "description": "Third official meetup of Porto expats!",
     "url": "https://www.eventbrite.com/e/porto-expats-meetup-tickets-1996782897398",
-    "focus": []
+    "focus": [],
+    "price": "€0"
   },
   {
     "id": "03088e8a8ff021c1",
@@ -252,7 +243,8 @@
     "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1990453670510",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€0–23"
   },
   {
     "id": "b7daf853995618a4",
@@ -269,7 +261,8 @@
     "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53739",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "8905d8e0e0bcfa3c",
@@ -286,7 +279,8 @@
     "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53739",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "e6c57db376a3c19d",
@@ -303,7 +297,8 @@
     "url": "https://casadamusica.com/event/touriga/?selected_session=54265",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "e894f5cb7b1991c8",
@@ -320,7 +315,8 @@
     "url": "https://casadamusica.com/event/touriga/?selected_session=54265",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "4ac2a974f4a2b29d",
@@ -332,7 +328,8 @@
     "topics": [],
     "description": "Start your day with inspiring talks, fresh ideas, great coffee, and meaningful connections at CreativeMornings Porto.",
     "url": "https://www.eventbrite.co.uk/e/creative-mornings-tickets-1996244119900",
-    "focus": []
+    "focus": [],
+    "price": "€0"
   },
   {
     "id": "0310ad2ec14b9098",
@@ -349,7 +346,8 @@
     "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53899",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "1fab564a5696146c",
@@ -366,7 +364,8 @@
     "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53899",
     "focus": [
       "fado"
-    ]
+    ],
+    "price": "€14–19.5"
   },
   {
     "id": "3d81a99fa71db733",
@@ -378,7 +377,8 @@
     "topics": [],
     "description": "Um sunset para reviver emoções, sentir o som e deixar a nostalgia guiar a energia da pista.",
     "url": "https://www.eventbrite.com/e/bilhetes-pulse-session-1992588973258",
-    "focus": []
+    "focus": [],
+    "price": "€10–25"
   },
   {
     "id": "bd866b2961b16b64",
@@ -390,7 +390,8 @@
     "topics": [],
     "description": "An online workshop w/ Gabi Abrão & Janaka Stucky",
     "url": "https://www.eventbrite.com/e/finding-your-north-star-and-swallowing-it-tickets-1996353443891",
-    "focus": []
+    "focus": [],
+    "price": "€44"
   },
   {
     "id": "692fb6d4a6a4af1e",
@@ -402,6 +403,7 @@
     "topics": [],
     "description": "Join Nikon Creator Evie Wilderness and discover underwater wildlife photography techniques, settings, and post-processing",
     "url": "https://www.eventbrite.com.au/e/underwater-wildlife-photography-essentials-with-evie-wilderness-online-tickets-1988377237844",
-    "focus": []
+    "focus": [],
+    "price": "€11.22"
   }
 ]
