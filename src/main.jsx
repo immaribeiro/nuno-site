@@ -239,24 +239,47 @@ function ChatPage() {
 // Kill switch: set SURPRISE_HEART_ENABLED to false, or delete the whole section.
 // ============================================================================
 const SURPRISE_HEART_ENABLED = true
-const SURPRISE_MESSAGE = ['amanhã já matamos as saudades', 'e trocamos muitos beijinhos bons (e fluido) 😘']
+// Imma's original message — the only one that carries the signature.
+const SURPRISE_ORIGINAL = { signed: true, lines: ['amanhã já matamos as saudades', 'e trocamos muitos beijinhos bons (e fluido) 😘'] }
+// Similar, unsigned phrases shown on the other clicks.
+const SURPRISE_PHRASES = [
+  ['Conto as horas', 'até voltar a perder-me', 'nesse teu sorriso.'],
+  ['O melhor de amanhã', 'não é o dia a começar', '— é acordar para ti.'],
+  ['Guarda um beijo', 'que amanhã', 'vou buscá-lo com juros.'],
+  ['A saudade aperta hoje', 'mas amanhã', 'quem aperta és tu.'],
+  ['Do teu lado', 'até os dias parvos', 'sabem a festa.'],
+  ['Já falta pouco', 'para trocar o mundo inteiro', 'por um abraço teu.'],
+  ['Amanhã há sol?', 'Não sei.', 'Mas há nós.'],
+  ['Só de pensar em ti', 'já me sinto', 'meio em casa.'],
+  ['Dorme bem, meu amor', 'que eu sonho', 'com o teu sorriso.'],
+  ['O teu colo', 'é o único sítio', 'onde o tempo para.'],
+]
 function SurpriseHeart() {
-  const [open, setOpen] = useState(false)
+  const [message, setMessage] = useState(null)
+  const lastIndex = useRef(-1)
+  const pickMessage = () => {
+    const pool = [SURPRISE_ORIGINAL, ...SURPRISE_PHRASES.map((lines) => ({ signed: false, lines }))]
+    let index = lastIndex.current
+    while (pool.length > 1 && index === lastIndex.current) index = Math.floor(Math.random() * pool.length)
+    lastIndex.current = index
+    setMessage(pool[index])
+  }
   return <>
-    <button type="button" className="surprise-heart" onClick={() => setOpen(true)} aria-label="Abrir mensagem surpresa">
+    <button type="button" className="surprise-heart" onClick={pickMessage} aria-label="Abrir mensagem surpresa">
       <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#ff4d6d" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" /></svg>
     </button>
-    {open && <SurpriseMessage onClose={() => setOpen(false)} />}
+    {message && <SurpriseMessage message={message} onClose={() => setMessage(null)} />}
   </>
 }
-function SurpriseMessage({ onClose }) {
+function SurpriseMessage({ message, onClose }) {
   useEffect(() => { document.body.classList.add('modal-open'); const key = (event) => { if (event.key === 'Escape') onClose() }; document.addEventListener('keydown', key); return () => { document.body.classList.remove('modal-open'); document.removeEventListener('keydown', key) } }, [onClose])
   return <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/85 p-5 sm:p-8" role="dialog" aria-modal="true" aria-label="Mensagem para o Nuno" onClick={(e) => e.target === e.currentTarget && onClose()}>
     <div className="surprise-card relative flex max-w-[42rem] flex-col items-center justify-center rounded-[6px] px-8 py-14 text-center sm:px-12 sm:py-20">
       <div className="grain" style={{ position: 'absolute', zIndex: -1, opacity: .12 }} />
       <button className="modal-button absolute right-4 top-4 z-10" onClick={onClose} aria-label="Fechar">×</button>
       <span className="surprise-heart-big" aria-hidden="true">❤️</span>
-      <div className="surprise-text">{SURPRISE_MESSAGE.map((line, i) => <span key={i}>{line}</span>)}</div>
+      <div className="surprise-text">{message.lines.map((line, i) => <span key={i}>{line}</span>)}</div>
+      {message.signed && <cite className="surprise-signature">— imma —</cite>}
     </div>
   </div>
 }
