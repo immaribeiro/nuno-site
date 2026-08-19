@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -65,12 +66,21 @@ def output_size(source: Path, destination: Path, force: bool) -> tuple[int, int,
 
 
 def write_manifest(path: Path, entries: list[dict[str, str]]) -> bool:
-    """Write JSON only when its content changed; return whether it changed."""
+    """Write JSON only when its content changed; return whether it changed.
+
+    The write is atomic (temp file in the same directory + os.replace) so
+    readers never see a partially-written manifest.
+    """
     content = json.dumps(entries, indent=2) + "\n"
     if path.exists() and path.read_text(encoding="utf-8") == content:
         return False
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")
+    temporary = path.with_name(path.name + ".tmp")
+    try:
+        temporary.write_text(content, encoding="utf-8")
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
     return True
 
 
@@ -103,6 +113,8 @@ def main() -> int:
         rows.append((source.name, destination.name, before, after, "converted" if converted else "skipped"))
 
     changed = write_manifest(manifest_path, entries)
+    # Live copy served straight from the mounted hostPath volume (nginx aliases it).
+    write_manifest(output_dir / "manifest.json", entries)
     print("Source                         Output                         Before    After  Status")
     print("-" * 89)
     for source, destination, before, after, status in rows:
