@@ -34,6 +34,23 @@ SOURCES = [
     ("Ticketline", "all", "https://v2.ticketline.pt/calendar?locale=pt"),
     ("BOL", "all", "https://www.bol.pt/Projectos/Entidades/Agenda"),
 ]
+# Curated events hand-picked for the calendar. Unlike scraped sources, these
+# survive the daily refresh: they are always included while their start date
+# is still ahead (no cutoff window), so they can be marked weeks in advance.
+MANUAL_EVENTS = [
+    {
+        "title": "Verde Cool",
+        "date": "2026-09-07T00:00:00+01:00",
+        "venue": "Braga — ruas e esplanadas",
+        "city": "braga",
+        "category": "other",
+        "topics": ["vinho verde", "petiscos"],
+        "description": "Festival de Vinho Verde e petiscos: de 7 de setembro a 4 de outubro, mais de 40 espaços de Braga (e também Vila Verde e Póvoa de Lanhoso) com o menu Verde Cool.",
+        "url": "https://www.facebook.com/VERDECOOL/",
+        "price": "Free",
+        "focus": [],
+    },
+]
 MONTHS = {"janeiro":1,"fevereiro":2,"março":3,"abril":4,"maio":5,"junho":6,"julho":7,"agosto":8,"setembro":9,"outubro":10,"novembro":11,"dezembro":12,
           "january":1,"february":2,"march":3,"april":4,"may":5,"june":6,"july":7,"august":8,"september":9,"october":10,"november":11,"december":12}
 DATE_RE = re.compile(r"(?P<d>\d{1,2})\s*(?:[/.-]|\s+de\s+)\s*(?P<m>\d{1,2}|[A-Za-zÀ-ÿ]+)(?:\s*(?:[/.-]|\s+de\s+)\s*(?P<y>20\d{2}))?", re.I)
@@ -319,6 +336,12 @@ def main():
                 found += eventbrite_page(topic_url, city, now, cutoff, topics)
     unique={}
     for e in found: unique[(e["title"].casefold(),e["date"],e["venue"].casefold())]=e
+    for e in MANUAL_EVENTS:
+        dt=datetime.fromisoformat(e["date"])
+        if dt < now: continue  # curated events drop off once their start date passes
+        entry=dict(e)
+        entry["id"]=event_id(entry["title"],entry["date"],entry["venue"])
+        unique[(entry["title"].casefold(),entry["date"],entry["venue"].casefold())]=entry
     events=focus_events(sorted(unique.values(),key=lambda e:(e["date"],e["title"].casefold())), topics)
     # Price enrichment: fetch detail pages for events without a price (capped, cached per URL)
     cache, fetched = {}, 0

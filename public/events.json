@@ -31,6 +31,42 @@
     "price": "€0"
   },
   {
+    "id": "a9e49f0a4963fe9a",
+    "title": "Porto: Fado Concert in one of Porto's most beautiful houses!",
+    "date": "2026-08-20T00:00:00+01:00",
+    "venue": "R. Dr. Alberto Aires de Gouveia 15",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "concert",
+      "fado"
+    ],
+    "description": "Enjoy an hour of FADO with a glass of Port Wine and a taste of typical portuguese pastry in one of Portos finest manor houses!",
+    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1986706129514",
+    "focus": [
+      "fado"
+    ],
+    "price": "€0–30"
+  },
+  {
+    "id": "b4191a94051db366",
+    "title": "Concertos e eventos CastleRock - Pub & Hotel, Porto",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "R. do Conde de Vizela 114",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "concerto",
+      "concert",
+      "música",
+      "comédia"
+    ],
+    "description": "À terça, quarta, sexta e sábado há música, sessões de comédia, microfone aberto a músicos ou noites temáticas. Os 5€ são consumíveis.",
+    "url": "https://www.eventbrite.pt/e/bilhetes-concertos-e-eventos-castlerock-pub-hotel-porto-1992116845110",
+    "focus": [],
+    "price": "€5"
+  },
+  {
     "id": "5adc5c5b801483f5",
     "title": "Cura de Som (Sound healing & chakra alignment)",
     "date": "2026-08-21T00:00:00+01:00",
@@ -55,24 +91,6 @@
     "url": "https://www.eventbrite.co.uk/e/porto-sunset-pubcrawl-tickets-1989094156166",
     "focus": [],
     "price": "€20"
-  },
-  {
-    "id": "c3aceb579ab79d61",
-    "title": "Porto: Live Fado Concert in a beautiful 19th century Palace",
-    "date": "2026-08-21T00:00:00+01:00",
-    "venue": "R. Formosa 121",
-    "city": "porto",
-    "category": "music",
-    "topics": [
-      "concert",
-      "fado"
-    ],
-    "description": "Enjoy an hour of FADO in a very central location, in a magnificent building in Porto Downtow (near Bolhao Metro Station)!",
-    "url": "https://www.eventbrite.pt/e/bilhetes-porto-live-fado-concert-in-a-beautiful-19th-century-palace-1986706985073",
-    "focus": [
-      "fado"
-    ],
-    "price": "€0–19"
   },
   {
     "id": "8f7fef987d8656c0",
@@ -206,22 +224,17 @@
     "price": "€0"
   },
   {
-    "id": "03088e8a8ff021c1",
-    "title": "Porto: Fado Concert in one of Porto's most beautiful houses!",
-    "date": "2026-08-23T00:00:00+01:00",
-    "venue": "R. Dr. Alberto Aires de Gouveia 15",
-    "city": "porto",
-    "category": "music",
-    "topics": [
-      "concert",
-      "fado"
-    ],
-    "description": "Enjoy an hour of FADO with a glass of Port Wine and a taste of typical portuguese pastry in one of Portos finest manor houses!",
-    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1990453670510",
-    "focus": [
-      "fado"
-    ],
-    "price": "€0–23"
+    "id": "f647b742cbc744d2",
+    "title": "SVPG Product Masterclass - Aug 24 - 26, 2026",
+    "date": "2026-08-24T00:00:00+01:00",
+    "venue": "Eventbrite",
+    "city": "braga",
+    "category": "other",
+    "topics": [],
+    "description": "An interactive course for product people who are serious about becoming exceptional at their job and about creating products customers love.",
+    "url": "https://www.eventbrite.com/e/svpg-product-masterclass-aug-24-26-2026-tickets-1990595845760",
+    "focus": [],
+    "price": "€1995"
   },
   {
     "id": "b7daf853995618a4",
@@ -382,5 +395,21 @@
     "url": "https://www.eventbrite.com.au/e/underwater-wildlife-photography-essentials-with-evie-wilderness-online-tickets-1988377237844",
     "focus": [],
     "price": "€11.22"
+  },
+  {
+    "title": "Verde Cool",
+    "date": "2026-09-07T00:00:00+01:00",
+    "venue": "Braga — ruas e esplanadas",
+    "city": "braga",
+    "category": "other",
+    "topics": [
+      "vinho verde",
+      "petiscos"
+    ],
+    "description": "Festival de Vinho Verde e petiscos: de 7 de setembro a 4 de outubro, mais de 40 espaços de Braga (e também Vila Verde e Póvoa de Lanhoso) com o menu Verde Cool.",
+    "url": "https://www.facebook.com/VERDECOOL/",
+    "price": "Free",
+    "focus": [],
+    "id": "3c86c59652ee2ce9"
   }
 ]
