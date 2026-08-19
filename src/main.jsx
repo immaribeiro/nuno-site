@@ -234,6 +234,33 @@ function ChatPage() {
   </div></main>
 }
 
+// ============================================================================
+// TEMPORARY SURPRISE — floating heart sticker + message (remove after use).
+// Kill switch: set SURPRISE_HEART_ENABLED to false, or delete the whole section.
+// ============================================================================
+const SURPRISE_HEART_ENABLED = true
+const SURPRISE_MESSAGE = ['amanhã já matamos as saudades', 'e trocamos muitos beijinhos bons (e fluido) 😘']
+function SurpriseHeart() {
+  const [open, setOpen] = useState(false)
+  return <>
+    <button type="button" className="surprise-heart" onClick={() => setOpen(true)} aria-label="Abrir mensagem surpresa">
+      <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#ff4d6d" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" /></svg>
+    </button>
+    {open && <SurpriseMessage onClose={() => setOpen(false)} />}
+  </>
+}
+function SurpriseMessage({ onClose }) {
+  useEffect(() => { document.body.classList.add('modal-open'); const key = (event) => { if (event.key === 'Escape') onClose() }; document.addEventListener('keydown', key); return () => { document.body.classList.remove('modal-open'); document.removeEventListener('keydown', key) } }, [onClose])
+  return <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/85 p-5 sm:p-8" role="dialog" aria-modal="true" aria-label="Mensagem para o Nuno" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="surprise-card relative flex max-w-[42rem] flex-col items-center justify-center rounded-[6px] px-8 py-14 text-center sm:px-12 sm:py-20">
+      <div className="grain" style={{ position: 'absolute', zIndex: -1, opacity: .12 }} />
+      <button className="modal-button absolute right-4 top-4 z-10" onClick={onClose} aria-label="Fechar">×</button>
+      <span className="surprise-heart-big" aria-hidden="true">❤️</span>
+      <div className="surprise-text">{SURPRISE_MESSAGE.map((line, i) => <span key={i}>{line}</span>)}</div>
+    </div>
+  </div>
+}
+
 function App() {
   const [photos, setPhotos] = useState([]); const [quotes, setQuotes] = useState([]); const [active, setActive] = useState(null); const [view, setView] = useState('gallery'); const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(UNLOCKED_STORAGE_KEY) === SITE_PIN)
   const refreshPhotos = () => { fetch('./manifest.json').then(r => r.json()).then(setPhotos).catch(console.error) }
@@ -241,6 +268,6 @@ function App() {
   useEffect(() => { if (active !== null) { const pre = new Image(); pre.src = photos[(active + 1) % photos.length]?.src } }, [active, photos])
   const switchView = (nextView) => { setView(nextView); window.scrollTo(0, 0) }
   if (!unlocked) return <PinGate onUnlock={() => setUnlocked(true)} />
-  return <div className="min-h-screen bg-ink text-cream"><header className="site-header"><button className="wordmark" onClick={() => switchView('gallery')}>NUNO <span className="text-amber">/</span> IMMA</button><nav aria-label="Primary navigation"><button className={`nav-link ${view === 'gallery' ? 'is-active' : ''}`} onClick={() => switchView('gallery')} aria-pressed={view === 'gallery'}>The archive</button><button className={`nav-link ${view === 'events' ? 'is-active' : ''}`} onClick={() => switchView('events')} aria-pressed={view === 'events'}>Events</button><button className={`nav-link ${view === 'news' ? 'is-active' : ''}`} onClick={() => switchView('news')} aria-pressed={view === 'news'}>News</button><button className={`nav-link ${view === 'us' ? 'is-active' : ''}`} onClick={() => switchView('us')} aria-pressed={view === 'us'}>Us</button><button className={`nav-link ${view === 'chat' ? 'is-active' : ''}`} onClick={() => switchView('chat')} aria-pressed={view === 'chat'}>Hermes</button></nav></header>{view === 'gallery' ? <Gallery photos={photos} quotes={quotes} onPhoto={setActive} onUploaded={refreshPhotos} /> : view === 'events' ? <EventsPage /> : view === 'news' ? <NewsPage /> : view === 'us' ? <UsPage /> : <ChatPage />}<footer className="border-t border-cream/15 px-5 py-12 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1440px] items-end justify-between"><p className="label text-cream">Nuno + Imma</p><p className="label text-right text-cream-dim">A small archive of us<br />2024 — now</p></div></footer><div className="grain" />{active !== null && <Lightbox photos={photos} index={active} onClose={() => setActive(null)} onChange={setActive} />}</div>
+  return <div className="min-h-screen bg-ink text-cream"><header className="site-header"><button className="wordmark" onClick={() => switchView('gallery')}>NUNO <span className="text-amber">/</span> IMMA</button><nav aria-label="Primary navigation"><button className={`nav-link ${view === 'gallery' ? 'is-active' : ''}`} onClick={() => switchView('gallery')} aria-pressed={view === 'gallery'}>The archive</button><button className={`nav-link ${view === 'events' ? 'is-active' : ''}`} onClick={() => switchView('events')} aria-pressed={view === 'events'}>Events</button><button className={`nav-link ${view === 'news' ? 'is-active' : ''}`} onClick={() => switchView('news')} aria-pressed={view === 'news'}>News</button><button className={`nav-link ${view === 'us' ? 'is-active' : ''}`} onClick={() => switchView('us')} aria-pressed={view === 'us'}>Us</button><button className={`nav-link ${view === 'chat' ? 'is-active' : ''}`} onClick={() => switchView('chat')} aria-pressed={view === 'chat'}>Hermes</button></nav></header>{view === 'gallery' ? <Gallery photos={photos} quotes={quotes} onPhoto={setActive} onUploaded={refreshPhotos} /> : view === 'events' ? <EventsPage /> : view === 'news' ? <NewsPage /> : view === 'us' ? <UsPage /> : <ChatPage />}<footer className="border-t border-cream/15 px-5 py-12 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1440px] items-end justify-between"><p className="label text-cream">Nuno + Imma</p><p className="label text-right text-cream-dim">A small archive of us<br />2024 — now</p></div></footer><div className="grain" />{SURPRISE_HEART_ENABLED && <SurpriseHeart />}{active !== null && <Lightbox photos={photos} index={active} onClose={() => setActive(null)} onChange={setActive} />}</div>
 }
 createRoot(document.getElementById('root')).render(<App />)
