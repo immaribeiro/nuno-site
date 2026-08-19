@@ -137,11 +137,28 @@ function WeatherWidget() {
   return <div className="weather-widget" aria-label="Porto weather"><span className="weather-icon">{icon}</span><span className="weather-now">{Math.round(weather.current.temperature_2m)}° · {label}</span><span className="weather-today">Hoje {today}</span><span className="weather-tomorrow">Amanhã {tomorrow}</span><span className="weather-wind">vento {Math.round(weather.current.wind_speed_10m)} km/h</span></div>
 }
 
+function MissYouPopup({ onClose }) {
+  useEffect(() => { document.body.classList.add('modal-open'); return () => document.body.classList.remove('modal-open') }, [])
+  return <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-5 sm:p-8" role="dialog" aria-modal="true" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="miss-you-card relative flex max-w-[42rem] flex-col items-center justify-center rounded-sm px-8 py-16 text-center sm:px-12 sm:py-24">
+      <div className="grain" style={{ position: 'absolute', zIndex: -1, opacity: .12 }} />
+      <button className="modal-button absolute right-4 top-4 z-10" onClick={onClose} aria-label="Fechar">×</button>
+      <span className="miss-you-heart">♡</span>
+      <div className="miss-you-text">
+        <span>Volto na sexta-feira</span>
+        <span>para te dar tanto amor</span>
+        <span>que cais para o lado.</span>
+      </div>
+    </div>
+  </div>
+}
+
 const DONE_IDEAS_KEY = 'nuno-us-done-ideas'
 function UsPage() {
   const [couple, setCouple] = useState({ since: '', milestones: [], songs: [], dateIdeas: [] })
   const [doneIdeas, setDoneIdeas] = useState(() => readStorage(DONE_IDEAS_KEY))
   const [surprise, setSurprise] = useState(null)
+  const [showMissYou, setShowMissYou] = useState(false)
   const headingRef = useRef(null)
   useEffect(() => { fetch('./couple.json').then((r) => r.ok ? r.json() : Promise.reject()).then((data) => setCouple({ since: '', milestones: [], songs: [], dateIdeas: [], ...data })).catch(() => {}) }, [])
   useEffect(() => { localStorage.setItem(DONE_IDEAS_KEY, JSON.stringify(doneIdeas)) }, [doneIdeas])
@@ -160,6 +177,8 @@ function UsPage() {
     {upcomingMilestone && <section className="us-section" aria-label="Next milestone"><p className="label text-amber">Próximo marco</p><h2 className="font-display text-3xl font-semibold">{upcomingMilestone.label}</h2><p className="us-sub">{upcomingMilestone.date.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' })} · em {Math.max(1, Math.round((upcomingMilestone.date - new Date()) / 86400000))} dias</p></section>}
     {couple.dateIdeas.length > 0 && <section className="us-section" aria-label="Date ideas"><div className="us-heading-row"><p className="label text-amber">A lista de ideias</p><button type="button" className="us-action" onClick={pickSurprise} disabled={!undone.length}>Surpresa 🎲</button></div>{surprise && <div className="us-surprise"><p className="font-display text-3xl font-semibold">{surprise}</p></div>}<ul className="us-list">{couple.dateIdeas.map((idea) => <li key={idea} className={doneIdeas.includes(idea) ? 'is-done' : ''}><button type="button" onClick={() => toggleIdea(idea)} aria-pressed={doneIdeas.includes(idea)}><span className="us-check">{doneIdeas.includes(idea) ? '✓' : '○'}</span>{idea}</button></li>)}</ul>{undone.length === 0 && <button type="button" className="us-action" onClick={() => setDoneIdeas([])}>Tudo feito — recomeçar</button>}</section>}
     <section className="us-section" aria-label="Our songs"><div className="us-heading-row"><p className="label text-amber">A nossa banda sonora</p></div>{couple.songs.length > 0 ? <ul className="us-songs">{couple.songs.map((song, index) => <li key={`${song.title}-${index}`}><span className="us-song-index">{String(index + 1).padStart(2, '0')}</span>{song.url ? <a href={song.url} target="_blank" rel="noreferrer">{song.title}{song.artist ? ` — ${song.artist}` : ''}</a> : <span>{song.title}{song.artist ? ` — ${song.artist}` : ''}</span>}</li>)}</ul> : <p className="us-sub">Ainda sem banda sonora — diz ao Hermes quais são as nossas músicas.</p>}</section>
+    <section className="us-section" aria-label="Miss you"><button type="button" className="miss-you-button" onClick={() => setShowMissYou(true)}>miss you</button></section>
+    {showMissYou && <MissYouPopup onClose={() => setShowMissYou(false)} />}
   </div></main>
 }
 
