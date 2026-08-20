@@ -1,49 +1,5 @@
 [
   {
-    "id": "9b6473878f944f0f",
-    "title": "ENGLISH STAND UP COMEDY OPEN MIC @Porto",
-    "date": "2026-08-20T00:00:00+01:00",
-    "venue": "Maria Pistolas",
-    "city": "porto",
-    "category": "other",
-    "topics": [],
-    "description": "Get ready to laugh out loud at the English Stand Up Comedy Open Mic in Porto – show up and crack up!",
-    "url": "https://www.eventbrite.pt/e/english-stand-up-comedy-open-mic-porto-tickets-1979465239818",
-    "focus": [],
-    "price": "€0"
-  },
-  {
-    "id": "0b73d586fbaf80db",
-    "title": "Porto Nightlife Pub Crawl | 4 Bars, 8 Drinks, Games & VIP Club Entry",
-    "date": "2026-08-20T00:00:00+01:00",
-    "venue": "Fonte dos Leões",
-    "city": "porto",
-    "category": "other",
-    "topics": [],
-    "description": "Join Porto's biggest pub crawl. Play Beer Pong, Flip Cup & fun challenges. Get 8 drinks, zero lines at 4 top bars and hit the best club",
-    "url": "https://www.eventbrite.co.uk/e/porto-nightlife-pub-crawl-4-bars-8-drinks-games-vip-club-entry-tickets-1965407395427",
-    "focus": [],
-    "price": "€20.44–22.57"
-  },
-  {
-    "id": "a9e49f0a4963fe9a",
-    "title": "Porto: Fado Concert in one of Porto's most beautiful houses!",
-    "date": "2026-08-20T00:00:00+01:00",
-    "venue": "R. Dr. Alberto Aires de Gouveia 15",
-    "city": "porto",
-    "category": "music",
-    "topics": [
-      "concert",
-      "fado"
-    ],
-    "description": "Enjoy an hour of FADO with a glass of Port Wine and a taste of typical portuguese pastry in one of Portos finest manor houses!",
-    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1986706129514",
-    "focus": [
-      "fado"
-    ],
-    "price": "€0–30"
-  },
-  {
     "id": "b4191a94051db366",
     "title": "Concertos e eventos CastleRock - Pub & Hotel, Porto",
     "date": "2026-08-21T00:00:00+01:00",
@@ -75,6 +31,19 @@
     "price": "€46.32"
   },
   {
+    "id": "6c658ad0807d9468",
+    "title": "Porto Nightlife Pub Crawl | 4 Bars, 8 Drinks, Games & VIP Club Entry",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "Fonte dos Leões",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Join Porto's biggest pub crawl. Play Beer Pong, Flip Cup & fun challenges. Get 8 drinks, zero lines at 4 top bars and hit the best club",
+    "url": "https://www.eventbrite.co.uk/e/porto-nightlife-pub-crawl-4-bars-8-drinks-games-vip-club-entry-tickets-1965407396430",
+    "focus": [],
+    "price": "€20.44–22.57"
+  },
+  {
     "id": "3c127bcd66271f91",
     "title": "Porto Sunset Pubcrawl",
     "date": "2026-08-21T00:00:00+01:00",
@@ -99,7 +68,7 @@
       "fado"
     ],
     "description": "Enjoy an hour of FADO with a glass of Port Wine and a taste of typical portuguese pastry in one of Portos finest manor houses!",
-    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1986706131520",
+    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1986706132523",
     "focus": [
       "fado"
     ],
@@ -119,11 +88,26 @@
     "price": "€0"
   },
   {
+    "id": "520c1c0da9327cc5",
+    "title": "The Journey of an Icon - Thomas Hoepker",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "Leica Store & Gallery Porto",
+    "city": "porto",
+    "category": "arts",
+    "topics": [
+      "gallery"
+    ],
+    "description": "Leica Gallery Porto: Uma viagem pelo olhar de Thomas Hoepker, um dos fotógrafos mais influentes da fotografia contemporânea.",
+    "url": "https://www.eventbrite.pt/e/the-journey-of-an-icon-thomas-hoepker-tickets-1994820241040",
+    "focus": [],
+    "price": "€0"
+  },
+  {
     "id": "ee17e3b3ec829cd0",
     "title": "Today's RDH Virtual Dental Continuing Education (CE) Event - Aug. 21, 2026",
     "date": "2026-08-21T00:00:00+01:00",
     "venue": "Eventbrite",
-    "city": "porto",
+    "city": "braga",
     "category": "other",
     "topics": [],
     "description": "Earn 8 live dental CE credits from the comfort of home during this live virtual CE event from Today's RDH! Register now to secure your spot!",
@@ -157,7 +141,7 @@
     "description": "",
     "url": "https://www.eventbrite.com/e/explore-portos-signature-cuisine-food-tour-in-porto-cozymealtm-tickets-1990282375161",
     "focus": [],
-    "price": "€112.24"
+    "price": "€0"
   },
   {
     "id": "f3e0c73ef7ac7831",
@@ -214,19 +198,6 @@
     "price": "€0"
   },
   {
-    "id": "f647b742cbc744d2",
-    "title": "SVPG Product Masterclass - Aug 24 - 26, 2026",
-    "date": "2026-08-24T00:00:00+01:00",
-    "venue": "Eventbrite",
-    "city": "braga",
-    "category": "other",
-    "topics": [],
-    "description": "An interactive course for product people who are serious about becoming exceptional at their job and about creating products customers love.",
-    "url": "https://www.eventbrite.com/e/svpg-product-masterclass-aug-24-26-2026-tickets-1990595845760",
-    "focus": [],
-    "price": "€1995"
-  },
-  {
     "id": "b7daf853995618a4",
     "title": "Sandra Cristina",
     "date": "2026-08-25T18:00:00+01:00",
@@ -261,6 +232,19 @@
       "fado"
     ],
     "price": "€14–19.5"
+  },
+  {
+    "id": "ef83655e4f6c98bc",
+    "title": "Coworking MeetUp #59- Digital Nomads Porto",
+    "date": "2026-08-26T00:00:00+01:00",
+    "venue": "LACS Porto",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Coworking Meet-Up",
+    "url": "https://www.eventbrite.com/e/coworking-meetup-59-digital-nomads-porto-tickets-1998414512603",
+    "focus": [],
+    "price": "€0"
   },
   {
     "id": "e6c57db376a3c19d",
@@ -385,6 +369,37 @@
     "url": "https://www.eventbrite.com.au/e/underwater-wildlife-photography-essentials-with-evie-wilderness-online-tickets-1988377237844",
     "focus": [],
     "price": "€11.22"
+  },
+  {
+    "id": "e780032344d8ba52",
+    "title": "Clube do Choro Porto convida Cristóvão Bastos E Ilana Volcov",
+    "date": "2026-09-03T21:30:00+01:00",
+    "venue": "Casa da Música",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes Sem eventos de 29.08.2026 a 02.09.2026 03.09.2026 quinta-feira, 21:30 Esplanada Clube do Choro Porto convida Cristóvão Bastos E Ilana ",
+    "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53742",
+    "focus": [],
+    "price": "€14–19.5"
+  },
+  {
+    "id": "dcea1e6f38149c3b",
+    "title": "Sandra Cristina",
+    "date": "2026-09-03T21:30:00+01:00",
+    "venue": "Casa da Música",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "fado",
+      "música"
+    ],
+    "description": "> Sandra Cristina Fado e Música Tradicional Portuguesa Sandra Cristina imprime ao fado um ritmo pessoal carregado de paixão e elegância, com uma intensidade que prende qualquer sala. Percorre palcos n",
+    "url": "https://casadamusica.com/event/sandra-cristina-2/?selected_session=53742",
+    "focus": [
+      "fado"
+    ],
+    "price": "€14–19.5"
   },
   {
     "title": "Verde Cool",
