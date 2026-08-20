@@ -288,12 +288,11 @@ function SurpriseMessage({ message, onClose }) {
 }
 
 const HERO_INDEX_KEY = 'nuno-hero-index'
-const HERO_ROTATED_KEY = 'nuno-hero-rotated'
 function pickHero(photos) {
   if (!photos.length) return null
-  if (sessionStorage.getItem(HERO_ROTATED_KEY)) { const last = Number(localStorage.getItem(HERO_INDEX_KEY)); return (Number.isFinite(last) ? photos[last % photos.length] : null) || photos[0] }
-  const next = (() => { const prev = Number(localStorage.getItem(HERO_INDEX_KEY)); return Number.isFinite(prev) ? (prev + 1) % photos.length : 0 })()
-  localStorage.setItem(HERO_INDEX_KEY, String(next)); sessionStorage.setItem(HERO_ROTATED_KEY, '1')
+  const prev = Number(localStorage.getItem(HERO_INDEX_KEY))
+  const next = Number.isFinite(prev) ? (prev + 1) % photos.length : 0
+  localStorage.setItem(HERO_INDEX_KEY, String(next))
   return photos[next]
 }
 
