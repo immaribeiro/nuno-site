@@ -1,23 +1,5 @@
 [
   {
-    "id": "ff0d28f7e086a6e0",
-    "title": "Concertos e eventos CastleRock - Pub & Hotel, Porto",
-    "date": "2026-08-19T00:00:00+01:00",
-    "venue": "R. do Conde de Vizela 114",
-    "city": "porto",
-    "category": "music",
-    "topics": [
-      "concerto",
-      "concert",
-      "música",
-      "comédia"
-    ],
-    "description": "À terça, quarta, sexta e sábado há música, sessões de comédia, microfone aberto a músicos ou noites temáticas. Os 5€ são consumíveis.",
-    "url": "https://www.eventbrite.pt/e/bilhetes-concertos-e-eventos-castlerock-pub-hotel-porto-1992116739795",
-    "focus": [],
-    "price": "€5"
-  },
-  {
     "id": "9b6473878f944f0f",
     "title": "ENGLISH STAND UP COMEDY OPEN MIC @Porto",
     "date": "2026-08-20T00:00:00+01:00",
@@ -29,6 +11,19 @@
     "url": "https://www.eventbrite.pt/e/english-stand-up-comedy-open-mic-porto-tickets-1979465239818",
     "focus": [],
     "price": "€0"
+  },
+  {
+    "id": "0b73d586fbaf80db",
+    "title": "Porto Nightlife Pub Crawl | 4 Bars, 8 Drinks, Games & VIP Club Entry",
+    "date": "2026-08-20T00:00:00+01:00",
+    "venue": "Fonte dos Leões",
+    "city": "porto",
+    "category": "other",
+    "topics": [],
+    "description": "Join Porto's biggest pub crawl. Play Beer Pong, Flip Cup & fun challenges. Get 8 drinks, zero lines at 4 top bars and hit the best club",
+    "url": "https://www.eventbrite.co.uk/e/porto-nightlife-pub-crawl-4-bars-8-drinks-games-vip-club-entry-tickets-1965407395427",
+    "focus": [],
+    "price": "€20.44–22.57"
   },
   {
     "id": "a9e49f0a4963fe9a",
@@ -93,6 +88,24 @@
     "price": "€20"
   },
   {
+    "id": "c6a880fd2c6eae61",
+    "title": "Porto: Fado Concert in one of Porto's most beautiful houses!",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "R. Dr. Alberto Aires de Gouveia 15",
+    "city": "porto",
+    "category": "music",
+    "topics": [
+      "concert",
+      "fado"
+    ],
+    "description": "Enjoy an hour of FADO with a glass of Port Wine and a taste of typical portuguese pastry in one of Portos finest manor houses!",
+    "url": "https://www.eventbrite.pt/e/porto-fado-concert-in-one-of-portos-most-beautiful-houses-tickets-1986706131520",
+    "focus": [
+      "fado"
+    ],
+    "price": "€0–30"
+  },
+  {
     "id": "8f7fef987d8656c0",
     "title": "Reunião Networking empresarial",
     "date": "2026-08-21T00:00:00+01:00",
@@ -106,40 +119,17 @@
     "price": "€0"
   },
   {
-    "id": "bda96bdad385de86",
-    "title": "Pedro Ferreira",
-    "date": "2026-08-21T18:00:00+01:00",
-    "venue": "Casa da Música",
+    "id": "ee17e3b3ec829cd0",
+    "title": "Today's RDH Virtual Dental Continuing Education (CE) Event - Aug. 21, 2026",
+    "date": "2026-08-21T00:00:00+01:00",
+    "venue": "Eventbrite",
     "city": "porto",
-    "category": "music",
-    "topics": [
-      "fado",
-      "música"
-    ],
-    "description": "> Pedro Ferreira Fado e Música Tradicional POrtuguesa Natural de Vila Nova de Gaia, Pedro Ferreira revelou desde muito cedo uma enorme paixão pela música. A descoberta do fado chegou em 2015, com a pa",
-    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900",
-    "focus": [
-      "fado"
-    ],
-    "price": "€14–19.5"
-  },
-  {
-    "id": "9f505824b0874673",
-    "title": "Sandra Cristina",
-    "date": "2026-08-21T18:00:00+01:00",
-    "venue": "Casa da Música",
-    "city": "porto",
-    "category": "music",
-    "topics": [
-      "fado",
-      "música"
-    ],
-    "description": "class=\"button-link button--with-icon group\" > Saber mais Bilhetes Sem eventos de 20.08.2026 a 20.08.2026 21.08.2026 sexta-feira, 18:00 Sala 2 Sandra Cristina Fado e Música Tradicional Portuguesa Sandr",
-    "url": "https://casadamusica.com/event/pedro-ferreira-2/?selected_session=53900",
-    "focus": [
-      "fado"
-    ],
-    "price": "€14–19.5"
+    "category": "other",
+    "topics": [],
+    "description": "Earn 8 live dental CE credits from the comfort of home during this live virtual CE event from Today's RDH! Register now to secure your spot!",
+    "url": "https://www.eventbrite.com/e/todays-rdh-virtual-dental-continuing-education-ce-event-aug-21-2026-registration-1993368037460",
+    "focus": [],
+    "price": "€107.34"
   },
   {
     "id": "48f0ac405ed79769",
