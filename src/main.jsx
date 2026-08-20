@@ -101,7 +101,7 @@ function NewsPage() {
   </div></main>
 }
 
-function Gallery({ photos, quotes, onPhoto, onUploaded }) {
+function Gallery({ photos, quotes, onPhoto, onUploaded, hero }) {
   const [uploading, setUploading] = useState(false)
   const [uploadMsg, setUploadMsg] = useState('')
   const fileRef = useRef(null)
@@ -122,7 +122,7 @@ function Gallery({ photos, quotes, onPhoto, onUploaded }) {
       setUploadMsg(typeof err?.message === 'string' && err.message.length < 140 ? err.message : 'Não consegui enviar a foto — tenta outra vez.')
     } finally { setUploading(false) }
   }
-  return <main id="top"><section className="hero relative flex min-h-[calc(100svh-60px)] items-end overflow-hidden sm:min-h-[calc(100svh-72px)]"><img src={photos[0]?.src} alt={photos[0]?.alt || ''} className="hero-image absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" /><div className="relative z-10 w-full p-5 pb-10 sm:p-8 sm:pb-16 lg:p-12 lg:pb-20"><p className="label mb-5 text-amber">01 / NUNO + IMMA</p><h1 className="font-display text-[clamp(3.5rem,12vw,10rem)] font-semibold uppercase leading-[.88] tracking-[-.035em]">Nuno</h1><p className="mt-5 max-w-[28rem] font-body text-base leading-[1.55] text-cream-muted">A record of the ordinary days that became ours.</p><div className="mt-10 hidden items-center gap-3 sm:flex"><span className="h-10 w-px bg-amber" /><span className="label text-cream-muted">Scroll to enter</span></div></div></section><section className="mx-auto grid max-w-[1440px] grid-cols-12 gap-6 px-5 py-24 sm:px-8 lg:gap-12 lg:px-12 lg:py-40"><Reveal className="col-span-12 lg:col-span-2"><p className="font-display text-6xl text-amber">02</p></Reveal><Reveal delay={80} className="col-span-12 max-w-[38rem] lg:col-span-7 lg:col-start-4"><h2 className="font-display text-[clamp(2.25rem,6vw,5rem)] font-semibold leading-[.94] tracking-[-.025em]">The days worth keeping.</h2><p className="mt-7 font-body text-base leading-[1.55] text-cream-muted">Places, small rituals, and the space between plans. Nothing staged. Everything ours.</p></Reveal></section><section aria-labelledby="gallery-title" className="mx-auto max-w-[1440px] px-5 pb-24 sm:px-8 lg:px-12 lg:pb-40"><div className="mb-8 flex items-end justify-between border-b border-cream/15 pb-4"><h2 id="gallery-title" className="label text-cream">The frames</h2><span className="label text-cream-dim">A small archive of us</span></div><div className="mb-8 flex flex-wrap items-center justify-end gap-3"><input ref={fileRef} type="file" accept="image/*" className="sr-only" onChange={uploadPhoto} aria-label="Add a photo" /><button type="button" className="us-action" onClick={() => fileRef.current?.click()} disabled={uploading}>{uploading ? 'A enviar…' : 'Add a photo +'}</button>{uploadMsg && <span className="label text-cream-dim" role="status">{uploadMsg}</span>}</div><div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-12 lg:gap-4">{photos.map((photo, i) => <React.Fragment key={photo.id}><Reveal delay={(i % 5) * 80} className={`${photo.featured ? 'col-span-2 lg:col-span-8' : 'col-span-1 lg:col-span-4'} ${photo.orientation === 'portrait' ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}><button className="photo-tile group" onClick={() => onPhoto(i)} aria-label={`Open ${photo.caption}`}><img src={photo.src} alt={photo.alt} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" width={photo.orientation === 'portrait' ? 800 : 1600} height={1000} /><span className="photo-caption"><span>{photo.caption}</span><span>{photo.date}</span></span></button></Reveal>{i === 3 && quotes[0] && <Quote quote={quotes[0]} />}</React.Fragment>)}</div></section>{quotes[1] && <Quote quote={quotes[1]} wide />}</main> }
+  return <main id="top"><section className="hero relative flex min-h-[calc(100svh-60px)] items-end overflow-hidden sm:min-h-[calc(100svh-72px)]"><img src={(hero || photos[0])?.src} alt={(hero || photos[0])?.alt || ''} className="hero-image absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" /><div className="relative z-10 w-full p-5 pb-10 sm:p-8 sm:pb-16 lg:p-12 lg:pb-20"><p className="label mb-5 text-amber">01 / NUNO + IMMA</p><h1 className="font-display text-[clamp(3.5rem,12vw,10rem)] font-semibold uppercase leading-[.88] tracking-[-.035em]">Nuno</h1><p className="mt-5 max-w-[28rem] font-body text-base leading-[1.55] text-cream-muted">A record of the ordinary days that became ours.</p><div className="mt-10 hidden items-center gap-3 sm:flex"><span className="h-10 w-px bg-amber" /><span className="label text-cream-muted">Scroll to enter</span></div></div></section><section className="mx-auto grid max-w-[1440px] grid-cols-12 gap-6 px-5 py-24 sm:px-8 lg:gap-12 lg:px-12 lg:py-40"><Reveal className="col-span-12 lg:col-span-2"><p className="font-display text-6xl text-amber">02</p></Reveal><Reveal delay={80} className="col-span-12 max-w-[38rem] lg:col-span-7 lg:col-start-4"><h2 className="font-display text-[clamp(2.25rem,6vw,5rem)] font-semibold leading-[.94] tracking-[-.025em]">The days worth keeping.</h2><p className="mt-7 font-body text-base leading-[1.55] text-cream-muted">Places, small rituals, and the space between plans. Nothing staged. Everything ours.</p></Reveal></section><section aria-labelledby="gallery-title" className="mx-auto max-w-[1440px] px-5 pb-24 sm:px-8 lg:px-12 lg:pb-40"><div className="mb-8 flex items-end justify-between border-b border-cream/15 pb-4"><h2 id="gallery-title" className="label text-cream">The frames</h2><span className="label text-cream-dim">A small archive of us</span></div><div className="mb-8 flex flex-wrap items-center justify-end gap-3"><input ref={fileRef} type="file" accept="image/*" className="sr-only" onChange={uploadPhoto} aria-label="Add a photo" /><button type="button" className="us-action" onClick={() => fileRef.current?.click()} disabled={uploading}>{uploading ? 'A enviar…' : 'Add a photo +'}</button>{uploadMsg && <span className="label text-cream-dim" role="status">{uploadMsg}</span>}</div><div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-12 lg:gap-4">{photos.map((photo, i) => <React.Fragment key={photo.id}><Reveal delay={(i % 5) * 80} className={`${photo.featured ? 'col-span-2 lg:col-span-8' : 'col-span-1 lg:col-span-4'} ${photo.orientation === 'portrait' ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}><button className="photo-tile group" onClick={() => onPhoto(i)} aria-label={`Open ${photo.caption}`}><img src={photo.src} alt={photo.alt} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" width={photo.orientation === 'portrait' ? 800 : 1600} height={1000} /><span className="photo-caption"><span>{photo.caption}</span><span>{photo.date}</span></span></button></Reveal>{i === 3 && quotes[0] && <Quote quote={quotes[0]} />}</React.Fragment>)}</div></section>{quotes[1] && <Quote quote={quotes[1]} wide />}</main> }
 function Quote({ quote, wide }) { return <section className={`quote-panel ${wide ? 'my-0' : 'col-span-2 lg:col-span-12 my-8 lg:my-16'}`}><Reveal className="mx-auto max-w-[58rem] px-5 text-left sm:px-8 sm:text-center"><span className="mb-8 block h-px w-12 bg-amber" /><blockquote className="font-quote text-[clamp(2rem,4.2vw,4.25rem)] leading-[1.04] tracking-[-.018em] italic">{quote.text}</blockquote>{quote.author && <cite className="mt-7 block label not-italic text-cream-dim">— {quote.author}</cite>}</Reveal></section> }
 
 const WEATHER_URL = 'https://api.open-meteo.com/v1/forecast?latitude=41.1579&longitude=-8.6291&current=temperature_2m,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min&timezone=Europe%2FLisbon&forecast_days=2'
@@ -239,30 +239,33 @@ function ChatPage() {
 // Kill switch: set SURPRISE_HEART_ENABLED to false, or delete the whole section.
 // ============================================================================
 const SURPRISE_HEART_ENABLED = true
-// Imma's original message — the only one that carries the signature.
-const SURPRISE_ORIGINAL = { signed: true, lines: ['amanhã já matamos as saudades', 'e trocamos muitos beijinhos bons (e fluido) 😘'] }
-// Similar, unsigned phrases shown on the other clicks.
+// Imma's own messages are signed; the rest (written for the site) are not.
+// The first entry always shows on the first click.
 const SURPRISE_PHRASES = [
-  ['Conto as horas', 'até voltar a perder-me', 'nesse teu sorriso.'],
-  ['O melhor de amanhã', 'não é o dia a começar', '— é acordar para ti.'],
-  ['Guarda um beijo', 'que amanhã', 'vou buscá-lo com juros.'],
-  ['A saudade aperta hoje', 'mas amanhã', 'quem aperta és tu.'],
-  ['Do teu lado', 'até os dias parvos', 'sabem a festa.'],
-  ['Já falta pouco', 'para trocar o mundo inteiro', 'por um abraço teu.'],
-  ['Amanhã há sol?', 'Não sei.', 'Mas há nós.'],
-  ['Só de pensar em ti', 'já me sinto', 'meio em casa.'],
-  ['Dorme bem, meu amor', 'que eu sonho', 'com o teu sorriso.'],
-  ['O teu colo', 'é o único sítio', 'onde o tempo para.'],
+  { signed: true, lines: ['amanhã já matamos as saudades', 'e trocamos muitos beijinhos bons (e fluido) 😘'] },
+  { signed: true, lines: ['Vim para Paris,', 'mas só penso em Viseu.'] },
+  { signed: true, lines: ['Sexta-feira já está quase aí', 'e vamos comer Raízes 😁'] },
+  { signed: true, lines: ['Tenho saudades tuas, Kikinho.'] },
+  { signed: false, lines: ['Conto as horas', 'até voltar a perder-me', 'nesse teu sorriso.'] },
+  { signed: false, lines: ['O melhor de amanhã', 'não é o dia a começar', '— é acordar para ti.'] },
+  { signed: false, lines: ['Guarda um beijo', 'que amanhã', 'vou buscá-lo com juros.'] },
+  { signed: false, lines: ['A saudade aperta hoje', 'mas amanhã', 'quem aperta és tu.'] },
+  { signed: false, lines: ['Do teu lado', 'até os dias parvos', 'sabem a festa.'] },
+  { signed: false, lines: ['Já falta pouco', 'para trocar o mundo inteiro', 'por um abraço teu.'] },
+  { signed: false, lines: ['Amanhã há sol?', 'Não sei.', 'Mas há nós.'] },
+  { signed: false, lines: ['Só de pensar em ti', 'já me sinto', 'meio em casa.'] },
+  { signed: false, lines: ['Dorme bem, meu amor', 'que eu sonho', 'com o teu sorriso.'] },
+  { signed: false, lines: ['O teu colo', 'é o único sítio', 'onde o tempo para.'] },
 ]
 function SurpriseHeart() {
   const [message, setMessage] = useState(null)
   const lastIndex = useRef(-1)
   const pickMessage = () => {
-    const pool = [SURPRISE_ORIGINAL, ...SURPRISE_PHRASES.map((lines) => ({ signed: false, lines }))]
-    let index = lastIndex.current
-    while (pool.length > 1 && index === lastIndex.current) index = Math.floor(Math.random() * pool.length)
+    let index = 0
+    if (lastIndex.current === -1) index = 0
+    else { index = lastIndex.current; while (index === lastIndex.current) index = Math.floor(Math.random() * SURPRISE_PHRASES.length) }
     lastIndex.current = index
-    setMessage(pool[index])
+    setMessage(SURPRISE_PHRASES[index])
   }
   return <>
     <button type="button" className="surprise-heart" onClick={pickMessage} aria-label="Abrir mensagem surpresa">
@@ -284,13 +287,23 @@ function SurpriseMessage({ message, onClose }) {
   </div>
 }
 
+const HERO_INDEX_KEY = 'nuno-hero-index'
+const HERO_ROTATED_KEY = 'nuno-hero-rotated'
+function pickHero(photos) {
+  if (!photos.length) return null
+  if (sessionStorage.getItem(HERO_ROTATED_KEY)) { const last = Number(localStorage.getItem(HERO_INDEX_KEY)); return (Number.isFinite(last) ? photos[last % photos.length] : null) || photos[0] }
+  const next = (() => { const prev = Number(localStorage.getItem(HERO_INDEX_KEY)); return Number.isFinite(prev) ? (prev + 1) % photos.length : 0 })()
+  localStorage.setItem(HERO_INDEX_KEY, String(next)); sessionStorage.setItem(HERO_ROTATED_KEY, '1')
+  return photos[next]
+}
+
 function App() {
-  const [photos, setPhotos] = useState([]); const [quotes, setQuotes] = useState([]); const [active, setActive] = useState(null); const [view, setView] = useState('gallery'); const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(UNLOCKED_STORAGE_KEY) === SITE_PIN)
+  const [photos, setPhotos] = useState([]); const [hero, setHero] = useState(null); const [quotes, setQuotes] = useState([]); const [active, setActive] = useState(null); const [view, setView] = useState('gallery'); const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(UNLOCKED_STORAGE_KEY) === SITE_PIN)
   const refreshPhotos = () => { fetch('./manifest.json').then(r => r.json()).then(setPhotos).catch(console.error) }
-  useEffect(() => { Promise.all([fetch('./manifest.json').then(r => r.json()), fetch('./quotes.json').then(r => r.json())]).then(([p, q]) => { setPhotos(p); setQuotes(q) }).catch(console.error) }, [])
+  useEffect(() => { Promise.all([fetch('./manifest.json').then(r => r.json()), fetch('./quotes.json').then(r => r.json())]).then(([p, q]) => { setPhotos(p); setQuotes(q); setHero(pickHero(p)) }).catch(console.error) }, [])
   useEffect(() => { if (active !== null) { const pre = new Image(); pre.src = photos[(active + 1) % photos.length]?.src } }, [active, photos])
   const switchView = (nextView) => { setView(nextView); window.scrollTo(0, 0) }
   if (!unlocked) return <PinGate onUnlock={() => setUnlocked(true)} />
-  return <div className="min-h-screen bg-ink text-cream"><header className="site-header"><button className="wordmark" onClick={() => switchView('gallery')}>NUNO <span className="text-amber">/</span> IMMA</button><nav aria-label="Primary navigation"><button className={`nav-link ${view === 'gallery' ? 'is-active' : ''}`} onClick={() => switchView('gallery')} aria-pressed={view === 'gallery'}>The archive</button><button className={`nav-link ${view === 'events' ? 'is-active' : ''}`} onClick={() => switchView('events')} aria-pressed={view === 'events'}>Events</button><button className={`nav-link ${view === 'news' ? 'is-active' : ''}`} onClick={() => switchView('news')} aria-pressed={view === 'news'}>News</button><button className={`nav-link ${view === 'us' ? 'is-active' : ''}`} onClick={() => switchView('us')} aria-pressed={view === 'us'}>Us</button><button className={`nav-link ${view === 'chat' ? 'is-active' : ''}`} onClick={() => switchView('chat')} aria-pressed={view === 'chat'}>Hermes</button></nav></header>{view === 'gallery' ? <Gallery photos={photos} quotes={quotes} onPhoto={setActive} onUploaded={refreshPhotos} /> : view === 'events' ? <EventsPage /> : view === 'news' ? <NewsPage /> : view === 'us' ? <UsPage /> : <ChatPage />}<footer className="border-t border-cream/15 px-5 py-12 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1440px] items-end justify-between"><p className="label text-cream">Nuno + Imma</p><p className="label text-right text-cream-dim">A small archive of us<br />2024 — now</p></div></footer><div className="grain" />{SURPRISE_HEART_ENABLED && <SurpriseHeart />}{active !== null && <Lightbox photos={photos} index={active} onClose={() => setActive(null)} onChange={setActive} />}</div>
+  return <div className="min-h-screen bg-ink text-cream"><header className="site-header"><button className="wordmark" onClick={() => switchView('gallery')}>NUNO <span className="text-amber">/</span> IMMA</button><nav aria-label="Primary navigation"><button className={`nav-link ${view === 'gallery' ? 'is-active' : ''}`} onClick={() => switchView('gallery')} aria-pressed={view === 'gallery'}>The archive</button><button className={`nav-link ${view === 'events' ? 'is-active' : ''}`} onClick={() => switchView('events')} aria-pressed={view === 'events'}>Events</button><button className={`nav-link ${view === 'news' ? 'is-active' : ''}`} onClick={() => switchView('news')} aria-pressed={view === 'news'}>News</button><button className={`nav-link ${view === 'us' ? 'is-active' : ''}`} onClick={() => switchView('us')} aria-pressed={view === 'us'}>Us</button><button className={`nav-link ${view === 'chat' ? 'is-active' : ''}`} onClick={() => switchView('chat')} aria-pressed={view === 'chat'}>Hermes</button></nav></header>{view === 'gallery' ? <Gallery photos={photos} quotes={quotes} onPhoto={setActive} onUploaded={refreshPhotos} hero={hero} /> : view === 'events' ? <EventsPage /> : view === 'news' ? <NewsPage /> : view === 'us' ? <UsPage /> : <ChatPage />}<footer className="border-t border-cream/15 px-5 py-12 sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1440px] items-end justify-between"><p className="label text-cream">Nuno + Imma</p><p className="label text-right text-cream-dim">A small archive of us<br />2024 — now</p></div></footer><div className="grain" />{SURPRISE_HEART_ENABLED && <SurpriseHeart />}{active !== null && <Lightbox photos={photos} index={active} onClose={() => setActive(null)} onChange={setActive} />}</div>
 }
 createRoot(document.getElementById('root')).render(<App />)
