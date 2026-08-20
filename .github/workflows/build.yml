@@ -6,6 +6,12 @@ on:
     paths-ignore:
       - public/photos/**
       - public/manifest.json
+      - public/events.json
+      - public/news.json
+      - public/topics.json
+      - public/pinned.json
+      - public/couple.json
+      - public/quotes.json
   pull_request:
     branches: [main]
 
